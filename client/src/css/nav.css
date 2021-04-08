@@ -1,0 +1,193 @@
+
+
+
+.navigationComponent {
+
+    /*TEMPORARY*/
+    margin-right: auto;
+    margin-left: auto;
+
+    width: 100%;
+    max-width: 100%;
+    min-height: 50px;
+    background-color: #fafafa;
+    color: #313d46;
+    font-family: 'Sen', sans-serif !important;
+
+}
+
+.navigationComponent .backgroundOverlay.open {
+	background: rgba(0,0,0,.4);
+  right: 0;
+  left: 0;
+  top: 0;
+  visibility: visible;
+
+}
+
+.navigationComponent .backgroundOverlay {
+  background: rgba(0,0,0,.0);
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  transition: background 0.7s, visibility 0.7s;
+}
+
+
+
+/* The side navigation menu */
+.navigationComponent .sidenav {
+    height: 100%;
+    width: 300px; 
+    position: fixed; 
+    z-index: 3; 
+    top: 0; 
+    left: -9999px;
+    background-color: #fafafa; 
+    overflow-x: hidden; 
+    transition: 0.8s; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 5px -2px #888;
+  }
+  .navigationComponent .sidenav.open {
+    left:0px;
+  }
+
+  
+  .navigationComponent .sidenav  a {
+    display: flex;
+    background-color: #fff;    
+    text-decoration: none;
+    border-bottom: 1px solid #e0e0e0;
+    color: #313d46; 
+  }
+
+  .navigationComponent .sidenav a:not(.userProfile)  {
+
+    padding: 15px;
+
+  }
+
+  .navigationComponent .sidenav > div {
+    border-top: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+  }
+
+  .navigationComponent .sidenav .userProfile {
+    margin-bottom: 30px;
+  }
+
+  .navigationComponent .sidenav a:hover,.navigationComponent .sidenav a:focus, .navigationComponent .sidenav div.btnRow button:hover,  .navigationComponent .sidenav div.btnRow button:focus  {
+    opacity: .5; 
+  }
+
+  .navigationComponent .sidenav .userProfile .photoPlaceholder, .navigationComponent .sidenav .userProfile img  {
+    width: 50px;
+    height: 50px;
+    margin: 30px;
+    border-radius: 60px;
+    background-color: #5FFFD3;
+
+  }
+  .navigationComponent .sidenav .userProfile div:last-child{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .navigationComponent .sidenav .userProfile div:last-child p:first-child {
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-weight: bold;
+  }
+  .navigationComponent .sidenav .userProfile div:last-child p:last-child {
+    margin: 0px;
+  }
+
+  .navigationComponent .sidenav div.btnRow {
+
+    display: flex;
+    
+  }
+  .navigationComponent .sidenav div.btnRow ul {
+
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+
+  }
+
+  .navigationComponent .sidenav div.btnRow ul li {
+    width: 50%;
+  }
+  .navigationComponent .sidenav div.btnRow a {
+
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 0;
+    border-top: 0;
+    display: block;
+    text-align: center;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 1em;
+    background-color: #fff;
+    color: #313d46;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+  .navigationComponent .sidenav div.btnRow a:hover {
+
+    cursor:pointer;
+}
+
+
+
+
+  .navigationComponent .sidenav div.photoPlaceholder p {
+    line-height: 50px;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+  
+  }
+
+
+
+  #navigationToggle {
+    display: block;
+    font-size: 35px;
+    color: #5FFFD3;
+    line-height: 48px;
+    width: 35px;
+
+  }
+  #navigationToggle:hover {
+      cursor: pointer;
+      opacity: 0.5;
+  }
+
+  .navigationComponent .sidenav div.btnRow button:hover {
+    cursor: pointer;
+  }
+
+  .navigationComponent .navHeader {
+
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 0px 15px 0px 15px;
+  
+  }

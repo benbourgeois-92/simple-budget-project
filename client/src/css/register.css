@@ -1,0 +1,108 @@
+
+.registerComponent {
+
+    /*TEMPORARY*/
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    width: 100%;
+    max-width: 420px;
+    background-color: #fff;
+    color: #313d46;
+    /*subtext color:  #8f949b Emergency color: #ef3f3a*/
+    /*Blue: #0d96ff lines: #e0e0e0*/
+    font-family: 'Sen', sans-serif;
+}
+.registerComponent label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+
+} 
+.registerComponent input {
+    -webkit-appearance: none;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    display:block;
+    background-color:#fafafa;
+
+}
+
+.registerComponent  img {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    margin-bottom: 75px;
+}
+.registerComponent h2, .registerComponent h2 + p {
+  text-align: left;
+}
+
+.registerComponent p {
+    margin-bottom: 60px;
+
+}
+
+.registerComponent form {
+    display:block;
+}
+.registerComponent form div:first-child input {
+    width: 100%;
+}
+.registerComponent form div:last-child input {
+    width: 100%;
+}
+.registerComponent form div:last-child input {
+    border-bottom: 1px solid #e0e0e0;
+}
+.registerComponent form div:last-child input:last-child {
+    border-left: 1px solid #e0e0e0;
+    text-align: center;
+    width: 30%;
+}
+.registerComponent form div input::placeholder {
+    color: #8f949b;
+}
+
+
+.registerComponent form div input {
+    background-color: #fff;
+    padding: 15px;
+    border: none;
+    display: block;
+    border-top: 1px solid #e0e0e0;
+}
+
+.registerComponent form div {
+    display: flex;
+}
+
+
+.registerComponent form + div {
+    display: flex;
+    justify-content: space-between;
+}
+.registerComponent form + div a {
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    color: #0d96ff;
+}
+
+.registerComponent div p {
+    display: block;
+    text-align: center;
+    margin: 0;
+}
+
+.registerComponent .copyrightInfo {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+
+}

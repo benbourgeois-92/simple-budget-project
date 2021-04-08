@@ -1,0 +1,18 @@
+
+.popupComponent .popup .smallScreen {
+    margin-bottom: 0;
+}
+.smallScreen h2, .smallScreen p {
+
+    text-align: center;
+    margin-top: 0;
+
+}
+
+.smallScreen .selectOptions {
+    margin: 0;
+}
+
+.smallScreen .strong {
+    font-weight: bold;
+}

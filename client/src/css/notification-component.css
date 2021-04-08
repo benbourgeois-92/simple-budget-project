@@ -1,0 +1,30 @@
+
+.notificationComponent {
+    margin-right: auto;
+    margin-left: auto;
+
+    width: 100%;
+    max-width: 420px;
+    color: #313d46;
+    font-family: 'Sen', sans-serif !important;
+    position: relative;
+    z-index: 2;
+}
+
+.notificationComponent .display {
+    background-color: #fff;
+    position: fixed;
+    top: -9999px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: .5s ease-in-out;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.notificationComponent .display.open {
+
+    top: 30px;
+
+}

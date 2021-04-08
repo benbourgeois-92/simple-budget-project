@@ -1,0 +1,202 @@
+
+.expensesComponent {
+
+    /*TEMPORARY*/
+    margin-right: auto;
+    margin-left: auto;
+
+
+    width: 100%;
+    max-width: 100%;
+    min-height: 812px;
+    background-color: #fafafa;
+    color: #313d46;
+    /*subtext color:  #8f949b Emergency color: #ef3f3a*/
+    /*Blue: #0d96ff lines: #e0e0e0*/
+    font-family: 'Sen', sans-serif;
+    overflow:hidden;
+}
+.expensesComponent .expensesSummary {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+}
+.expensesComponent .expensesSummary button.squareIcon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    border: 1px solid transparent;
+    background-size: 25px 25px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+
+}
+
+
+.expensesComponent .expensesSummary button.squareIcon:hover, .expensesComponent .expensesSummary button.squareIcon:focus {
+    background-color:#fff;
+    cursor: pointer;
+    transform: scale(1.1);
+    border: 1px solid #e0e0e0;
+
+}
+
+.expensesComponent .expensesSummary ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+}
+
+.expensesComponent .expensesSummary .squareIcon.edit {
+    text-indent: -9999px;
+    background: url(../images/edit.svg);
+  
+}
+.expensesComponent .expensesSummary .squareIcon.add {
+  text-indent: -9999px;
+  background: url(../images/add.svg);
+
+}
+.expensesComponent .expensesSummary .squareIcon.sort {
+    text-indent: -9999px;
+    background: url(../images/sort.svg); 
+
+}
+
+.expensesComponent .expensesSummary h2, .expensesComponent .expensesSummary h2 + p {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2.25em;
+
+}
+.expensesComponent .expensesSummary h2 + p + p {
+    text-align: center;
+}
+
+.expensesComponent .expensesSummary h2, .expensesComponent .expensesSummary p {
+    margin-top: 0;
+    text-align: center;
+}
+.expensesComponent .expensesSummary p {
+    font-size: 1.5em;
+}
+
+.expensesComponent .expensesSummary p span {
+    font-weight: bold;
+
+}
+
+.expensesComponent .expensesListview {
+    padding-left: 0;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0px;
+
+
+}
+
+
+
+
+.expensesComponent .individualExpense button:first-child:hover {
+    cursor: pointer;
+    background-color: #313d46;
+    color: #fff;
+}
+.expensesComponent .individualExpense button:first-child:hover  {
+    color: #fff;
+    cursor: pointer;
+
+}
+
+.expensesComponent .individualExpense button:first-child:hover  .statusBar {
+    border-color: #fff;
+}
+
+.expensesComponent .individualExpense button.editButton:hover {
+    background: rgba(165, 56, 96, .7);
+}
+.expensesComponent .individualExpense button.editButton {
+    background: rgba(165, 56, 96, 1);
+    color: #fff;
+    height: 100%;
+    text-align: center;
+    width: 100px;
+    border: none;
+    font-family: 'Sen', sans-serif;
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+.expensesComponent .individualExpense button.deleteButton:hover {
+    background: rgba(239, 63, 58, .7)
+    
+}
+
+.expensesComponent .individualExpense button:first-child {
+    display:flex;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+    font-family: 'Sen', sans-serif;
+    font-size: 1em;
+}
+
+.expensesComponent .individualExpense {
+    background-color: #fff;
+    list-style-type: none;
+    border-bottom: 1px solid #e0e0e0;
+    display: block;
+    width: 100%;
+
+
+}
+.expensesComponent .individualExpense button div p, .expensesComponent .individualExpense button div h2 {
+    display:block;
+}
+
+.expensesComponent .individualExpense button > div:first-child {
+    width: 80%;
+    padding-left: 15px;
+}
+.expensesComponent .individualExpense button > div:last-child {
+    width: 20%;
+    padding-right: 15px;
+}
+.expensesComponent .individualExpense button > div:first-child h3, .expensesComponent .individualExpense button > div:first-child p {
+    margin-top: 0;
+}
+
+.expensesComponent .individualExpense button > div:first-child p:last-child {
+    margin-bottom: 0;
+}
+
+.expensesComponent .individualExpense button > div:first-child h3, .expensesComponent .individualExpense > div:first-child p:first-of-type + p {
+    margin-bottom: 8px;
+}
+
+.expensesComponent .individualExpense .statusBar, 
+.expensesComponent .individualExpense .statusBar span {
+    border-radius: 25px;
+}
+.expensesComponent .individualExpense .statusBar {
+    border: 1px solid #313d46;
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+}
+.expensesComponent .individualExpense .statusBar span {
+    display: block;
+    height: 5px;
+    margin: 2px;
+}
+.expensesComponent .individualExpense button > div:first-child h3 + p span {
+    font-size: 1.25em;
+}

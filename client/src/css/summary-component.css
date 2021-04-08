@@ -1,0 +1,202 @@
+
+.summaryComponent {
+    width: 100%;
+    max-width: 1000px;
+    color: #313d46;
+    font-family: 'Sen', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.summaryComponent .summarySummary {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 30px;
+}
+.summaryComponent .summarySummary button.squareIcon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    border: 1px solid transparent;
+    background-size: 25px 25px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.pieChart {
+    width: 70%;
+}
+
+
+
+.summaryComponent .summarySummary button.squareIcon:hover, .summaryComponent .summarySummary button.squareIcon:focus {
+    background-color:#fff;
+    cursor: pointer;
+    transform: scale(1.1);
+    border: 1px solid #e0e0e0;
+
+}
+
+.summaryComponent .summarySummary ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+}
+
+.summaryComponent .summarySummary h2, .summaryComponent .summarySummary h2 + p {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2.25em;
+
+}
+.summaryComponent .summarySummary h2 + p + p {
+    text-align: center;
+}
+
+.summaryComponent .summarySummary h2, .summaryComponent .summarySummary p {
+    margin-top: 0;
+    text-align: center;
+}
+.summaryComponent .summarySummary p {
+    font-size: 1.5em;
+}
+
+.summaryComponent .summarySummary p span {
+    font-weight: bold;
+
+}
+
+.summaryComponent .summaryListview {
+    padding-left: 0;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0px;
+}
+
+
+
+
+.summaryComponent .individualGoal:hover {
+    cursor: pointer;
+    background-color: #313d46;
+    color: #fff;
+}
+.summaryComponent .individualGoal:hover button {
+    color: #fff;
+    cursor: pointer;
+
+}
+.summaryComponent .individualGoal:hover .statusBar {
+    border-color: #fff;
+}
+
+.summaryComponent .individualGoal button:not(.deleteButton) {
+    display:flex;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+    font-family: 'Sen', sans-serif;
+    font-size: 1em;
+}
+
+.summaryComponent .individualGoal {
+    background-color: #fff;
+    list-style-type: none;
+    border-bottom: 1px solid #e0e0e0;
+
+}
+
+
+.summaryComponent .individualGoal button > div:first-child {
+    width: 80%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.summaryComponent .individualGoal button > div:last-child {
+    width: 20%;
+    padding-right: 15px;
+}
+
+.summaryComponent .individualGoal.timeSensitive button > div:first-child {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.summaryComponent .individualGoal.timeSensitive button > div:last-child {
+    width: 0%;
+    padding-right: 0px;
+}
+.summaryComponent .individualGoal.timeSensitive button > div:last-child .amountSaved {
+    display:none;
+}
+
+.summaryComponent .individualGoal button > div:first-child h3 {
+    margin-top: 15px;
+}
+.summaryComponent .individualGoal button > div:first-child p {
+    margin-top: 10px;
+    text-align: center;
+}
+.summaryComponent .individualGoal button > div:first-child p:last-child {
+    margin-bottom: 0;
+}
+
+.summaryComponent .individualGoal button > div:first-child h3, .summaryComponent .individualGoal > div:first-child p:first-of-type + p {
+    margin-bottom: 15px;
+}
+
+.summaryComponent .individualGoal .statusBar, 
+.summaryComponent .individualGoal .statusBar span {
+    border-radius: 25px;
+}
+.summaryComponent .individualGoal .statusBar {
+    border: 1px solid #313d46;
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+}
+.summaryComponent .individualGoal .statusBar span {
+    display: block;
+    height: 5px;
+    margin: 2px;
+}
+.summaryComponent .individualGoal button > div:first-child h3 + p span {
+    font-size: 1.25em;
+}
+
+
+.deleteButton {
+    background-color: #ef3f3a;
+    color: #fff;
+    height: 100%; 
+    text-align: center;
+    width: 100px;
+    border: none;
+    font-family: 'Sen', sans-serif;
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+.summaryComponent .individualGoal:hover .amountSaved {
+    border: 1px solid #fff; 
+}
+
+.amountSaved {
+    width: 100%;
+    border: 1px solid #313d46; 
+    border-radius: 10px;
+}
+
+.amountSaved p {
+    color: #fff;
+    text-align: center;
+}
