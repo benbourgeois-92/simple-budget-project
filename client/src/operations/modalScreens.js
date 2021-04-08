@@ -68,11 +68,11 @@ export const AddExpenseScreen = (props) => {
             <div>
                 <h2>Add New Expense</h2>
                 <div>
-                    <label for="expenseName">Expense Title:</label>
+                    <label htmlFor="expenseName">Expense Title:</label>
                     <input type="text" id="expenseName" placeholder="enter your expense title here"/>							
                 </div>
                 <div>
-                    <label for="expenseName">Expense Name:</label>
+                    <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
                 </div>
 
@@ -95,11 +95,11 @@ export const EditExpenseScreen = (props) => {
             <div>
                 <h2>Edit Expense</h2>
                 <div>
-                    <label for="expenseName">Expense Title:</label>
+                    <label htmlFor="expenseName">Expense Title:</label>
                     <input type="text" id="expenseName" placeholder="enter your expense title here"/>							
                 </div>
                 <div>
-                    <label for="expenseName">Expense Name:</label>
+                    <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
                 </div>
 
@@ -119,11 +119,11 @@ export const DefaultScreen = (props) => {
     return (
             <div>
                 <div>
-                    <label for="expenseName">Expense Name:</label>
+                    <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
                 </div>
                 <div>
-                    <label for="expenseName">Expense Name:</label>
+                    <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
                 </div>
 

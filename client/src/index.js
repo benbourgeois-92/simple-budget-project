@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {GlobalProvider} from './user-context';
 import ModalProvider from './context/ModalProvider';
-import ModalRoot from './components/ModalRoot';
 
 ReactDOM.render(
   <React.StrictMode>

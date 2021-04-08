@@ -1,20 +1,30 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import ReactDOM from 'react-dom';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
 import GlobalContext from '../user-context' ;
 import currencyFormat from '../operations/conversions';
 
+import Muuri from 'muuri';
+
 const Expenses = () => {
 
     const [sorting, setSorting] = useState(false);
-
-    function toggleSort(sorting){
-
-        sorting ? setSorting(false) : setSorting(true);
-        
-    }
-
     const {account, screen, changeModalScreen} = useContext(GlobalContext)
+
+
+    setTimeout(() => {  
+        
+        const grid = new Muuri('.expensesListview', {
+            dragEnabled: sorting,
+            }); 
+        }, 200
+
+      );
+
+
+
+
 
     const orders = [
         {screen: "ADD_EXPENSE", item: null},
@@ -24,7 +34,9 @@ const Expenses = () => {
 
 
 
+
     return (
+        
         <div className="expensesComponent">
             <div className="expensesSummary">
                 <h2>Expenses</h2>
@@ -39,7 +51,7 @@ const Expenses = () => {
                     <div>
                         <ul>
                             <li><button onClick={() => changeModalScreen(orders[2])} className="squareIcon edit">Edit</button></li>
-                            <li><button onClick={() => toggleSort(sorting)} className="squareIcon sort">Sort Expenses</button></li>
+                            <li><button onClick={() => setSorting(!sorting)} className="squareIcon sort">Sort Expenses</button></li>
                             <li><button onClick={() => changeModalScreen(orders[0])} className="squareIcon add">Add an Expense</button></li>
                         </ul>
                         
@@ -47,11 +59,15 @@ const Expenses = () => {
                 </div>
             </div>
             <div>
-                <ul className="expensesListview">
+    
 
+
+                <ul className="expensesListview">
+        
                     {account.expenses.map((expense) => 
-                        <Expense key={expense.id} sorting={sorting}info={expense} />
-                    )}
+                        <Expense key={expense.id} sorting={sorting} info={expense} />
+                    )} 
+
 
                 </ul>                    
 

@@ -95,10 +95,10 @@
     display: inline-block;
     width: 100%;
     margin-top: 0px;
+    position: relative;
 
 
 }
-
 
 
 
@@ -155,9 +155,28 @@
     border-bottom: 1px solid #e0e0e0;
     display: block;
     width: 100%;
-
+    min-height: 147px;
+    position:absolute;
 
 }
+
+.expensesComponent .individualExpense.muuri-item-dragging {
+    z-index: 3;
+    border-radius: 30px !important;
+}
+
+.expensesComponent .individualExpense.muuri-item-releasing {
+    z-index: 2;
+}
+
+
+  .expensesComponent .individualExpense.muuri-item-hidden {
+    z-index: 0;
+  }
+
+
+
+
 .expensesComponent .individualExpense button div p, .expensesComponent .individualExpense button div h2 {
     display:block;
 }

@@ -22,7 +22,6 @@ const Expense = (props) => {
 
     const statusBarWidth = width.toString() + '%';
 
-
     const statusBarStyles = {
         backgroundColor: '#ff9b42',
         width: statusBarWidth
@@ -32,7 +31,8 @@ const Expense = (props) => {
         cellAlign: 'left',
         contain: true,
         prevNextButtons: false,
-        pageDots: false
+        pageDots: false,
+        draggable: !sorting
       }
 
       const orders = [
@@ -41,7 +41,7 @@ const Expense = (props) => {
       ]
 
     return (
-        <li className={sorting ? "individualExpense sorting listElement-carousel" : "individualExpense listElement-carousel"}>
+        <li className={sorting ? "individualExpense listElement-carousel" : "individualExpense listElement-carousel"}>
             <Flickity options={flickityOptions}>
                 <button className="carousel-cell">
                     <div>

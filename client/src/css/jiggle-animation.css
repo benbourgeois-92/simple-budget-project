@@ -1,6 +1,6 @@
 
 
-.expensesComponent .individualExpense.sorting:nth-child(2n) {
+.expensesComponent .individualExpense.sorting:nth-child(2n):not(:hover) {
   animation-name: keyframes1;
   animation-iteration-count: infinite;
   transform-origin: 50% 10%;
@@ -10,7 +10,7 @@ box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 
 }
 
-.expensesComponent .individualExpense.sorting:nth-child(2n-1) {
+.expensesComponent .individualExpense.sorting:nth-child(2n-1):not(:hover) {
   animation-name: keyframes2;
   animation-iteration-count: infinite;
   animation-direction: alternate;
