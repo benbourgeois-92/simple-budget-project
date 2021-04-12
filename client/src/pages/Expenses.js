@@ -12,7 +12,6 @@ const Expenses = () => {
 
     const [sorting, setSorting] = useState(false);
     const {account, screen, changeModalScreen} = useContext(GlobalContext)
-    console.log(sorting)
 
 
     const orders = [

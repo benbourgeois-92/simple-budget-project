@@ -7,7 +7,13 @@ import Flickity from 'react-flickity-component'
 import currencyFormat from '../operations/conversions'
 
 
-const Expense = ( props, ref) => {
+const Expense = ( props) => {
+
+    const draggableStyles = {
+        transition: props.isDragging ? 'none' : 'all 500ms',
+        top: `${props.top}px`,
+        position: 'absolute'
+    }
 
     const {changeModalScreen} = useContext(GlobalContext);
 
@@ -44,7 +50,7 @@ const Expense = ( props, ref) => {
 
         return (
 
-                <li className="individualExpense  listElement-carousel">
+                <li style={draggableStyles}  className="individualExpense  listElement-carousel">
                     <div className={sorting ? "sorting isClicked" : "isClicked"}>
                         <Flickity options={flickityOptions}>
 

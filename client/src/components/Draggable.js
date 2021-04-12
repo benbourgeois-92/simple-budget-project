@@ -3,7 +3,7 @@ import React, {useEffect, useState, useMemo, useCallback} from 'react';
 const POSITION = {x: 0, y: 0};
 
 
-const Draggable = ({children}) => {
+const Draggable = ({children, onDrag, onDragEnd, id, top, isDragging}) => {
 
 
     const [state, setState] = useState({
@@ -31,8 +31,8 @@ const Draggable = ({children}) => {
             translation
         }));
 
-
-    }, [state.origin]);
+        onDrag({translation, id});
+    }, [state.origin, onDrag, id]);
 
 
     const handleMouseUp = useCallback(() => {
@@ -40,7 +40,8 @@ const Draggable = ({children}) => {
             ...state,
             isDragging: false,
         }))
-    }, [])
+        onDragEnd();
+    }, [onDragEnd])
 
 
     useEffect(() => {
@@ -64,25 +65,21 @@ const Draggable = ({children}) => {
         cursor: state.isDragging ? '-webkit-grabbing' : '-webkit-grab',
         transform: `translate(${state.translation.x}px, ${state.translation.y}px)`,
         transition: state.isDragging ? 'none' : 'transform 500ms',
-        zIndex: state.isDragging ? 5 : 4,
+        zIndex: state.isDragging ? 3 : 2,
         position: state.isDragging ? 'absolute': 'relative',
         width: '100%'
 
     }), [state.isDragging, state.translation]);
 
-    const placeholderStyles = {
-        height: state.isDragging ? '147px' : 'auto',
-        transition: 'transform 500ms',
-        display: 'block',
-    }
+
+
+
+
 
     return (
-        <div style={placeholderStyles}>
             <div style={styles} onMouseDown={handleMouseDown}>
                 {children}
             </div>            
-        </div>
-
     );
 
 };

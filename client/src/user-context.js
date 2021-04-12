@@ -20,11 +20,13 @@ export const app = {
                 item: {},
         },
         account: {
+
                 balance: 0,
                 expenses: expenseList,
+                expenseOrder: [],
                 goals: [],                
-                transactions: transactions,
-
+                transactions: transactions
+                
         }         
 }
 

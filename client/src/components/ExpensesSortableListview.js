@@ -1,62 +1,85 @@
-import React, {useContext, useState, useCallback} from 'react';
+import React, {useContext, useState, useCallback, useEffect} from 'react';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
 import GlobalContext from '../user-context' ;
 import Draggable from '../components/Draggable';
-import { inRange, range} from 'lodash'
+import {inRange, range} from 'lodash'
 
+const HEIGHT = 148;
 
 export const ExpensesSortableListview = (props) => {
-    
+
     const sorting = props.sorting;
+
     const {account} = useContext(GlobalContext)
-    
+
+    const items = range(account.expenses.length);
+
+    const [state, setState] = useState({
+        order: items,
+        dragOrder: items,
+        draggedIndex: null
+    })
 
 
 
+    const handleDrag =  useCallback(({translation, id}) => {
+        const delta = Math.round(translation.y / HEIGHT);
+        const index = state.order.indexOf(id);
+        const dragOrder = state.order.filter(index => index !== id);
+
+        if(!inRange(index + delta, 0, items.length)){
+            return;
+        }
+        dragOrder.splice(index + delta, 0, id);
+        setState(state => ({
+            ...state,
+            draggedIndex: id,
+            dragOrder
+        }));
+    }, [state.order, items.length])
+
+
+    const handleDragEnd =  useCallback(() => {
+
+
+        setState(state => ({
+            ...state,
+            order: state.dragOrder,
+            draggedIndex: null
+        }));
+
+    }, []);
+
+
+    const collectOrder = () => {
+
+        
+
+
+    }
 
 
 
   
-
     return (
-           
-            <ul className="expensesListview">
                 
-                {/* {items.map(index => {
-                    const isDragging = state.draggedIndex === index;
+            <ul className="expensesListview">
+                        
+                    {account.expenses.map((expense, index) => {
 
-                    const draggedTop = state.order.indexOf(index) * (HEIGHT + 10)
+                        const isDragging = state.draggedIndex === index;
+                        const draggedTop = state.order.indexOf(index) * (HEIGHT + 2);
+                        const top = state.dragOrder.indexOf(index) * (HEIGHT );
 
-                    const top = state.dragOrder.indexOf(index) * (HEIGHT + 10)
-
-                    return (<Draggable key={index} id={index} onDrag={handleDrag} onDragEnd={handleDragEnd}>
-                        <div style={styles} isDragging={isDragging} top={isDragging ? draggedTop : top}>
-                        {index}
-                        </div>
-                    </Draggable>)
-                })
-                }  */}
-
-                <div>
-                    <p>No expenses here!</p>
-                    <p> Add some with the + button on the upper right.</p>                    
-                </div>
-
-                {account.expenses.map((expense, index) => {
-
-                   
-
-                    return (<Draggable>
-                        <Expense  key={expense.id} sorting={sorting} info={expense}/>
-                    </Draggable>
-
-                )})} 
-
-            </ul>  
-    )
-}
-
-
+                        return (
+                            <Draggable key={index} id={index}  onDrag={handleDrag} onDragEnd={handleDragEnd}>
+                                <Expense key={expense.id} sorting={sorting} info={expense} isDragging={isDragging} top={isDragging ? draggedTop : top} />
+                            </Draggable>
+                            )})
+                        } 
+            </ul>
+        )
+};
 
 export default ExpensesSortableListview;

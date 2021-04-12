@@ -25,7 +25,7 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   transform-origin: 30% 5%;
-  animation-delay: -.75s; 
+  animation-delay: -.8s; 
   animation-duration: .33s;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   background-color: #fff;
