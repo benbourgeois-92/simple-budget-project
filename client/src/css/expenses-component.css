@@ -8,7 +8,7 @@
 
     width: 100%;
     max-width: 100%;
-    min-height: 812px;
+    min-height: 1200px;
     background-color: #fafafa;
     color: #313d46;
     /*subtext color:  #8f949b Emergency color: #ef3f3a*/
@@ -95,12 +95,18 @@
     display: inline-block;
     width: 100%;
     margin-top: 0px;
-    position: relative;
-
 
 }
 
+.expensesComponent .expensesListview > div:first-child {
+    position: absolute;
+    width: 100%;
+}
 
+.expensesComponent .expensesListview > div:first-child > p {
+    text-align: center;
+    font-weight: bold;
+}
 
 .expensesComponent .individualExpense button:first-child:hover {
     cursor: pointer;
@@ -155,24 +161,10 @@
     border-bottom: 1px solid #e0e0e0;
     display: block;
     width: 100%;
-    min-height: 147px;
-    position:absolute;
+    position: relative;
+    
 
 }
-
-.expensesComponent .individualExpense.muuri-item-dragging {
-    z-index: 3;
-    border-radius: 30px !important;
-}
-
-.expensesComponent .individualExpense.muuri-item-releasing {
-    z-index: 2;
-}
-
-
-  .expensesComponent .individualExpense.muuri-item-hidden {
-    z-index: 0;
-  }
 
 
 

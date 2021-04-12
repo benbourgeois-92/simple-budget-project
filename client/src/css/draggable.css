@@ -1,0 +1,27 @@
+
+
+
+.isHidden {
+    visibility: hidden;
+
+}
+
+.isClicked.sorting:active {
+
+    cursor: grab;
+    transform: scale(.95) ;
+    transition: all 0.8;
+    touch-action: none;
+
+}
+
+.sorting {
+    pointer-events: none;
+
+}
+
+.isClicked{
+
+    transition: 0.3s cubic-bezier(0.2, 1, 0.1, 1);
+
+}

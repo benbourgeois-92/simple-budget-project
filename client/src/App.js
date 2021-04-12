@@ -45,7 +45,7 @@ const App = () => {
                     <Navbar />
                     <Pages />
 
-=                    <Popup />                    
+                  <Popup />                    
                 </Route>
 
             </Switch>

@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
+import ExpensesSortableListview from '../components/ExpensesSortableListview';
 import GlobalContext from '../user-context' ;
 import currencyFormat from '../operations/conversions';
 
@@ -11,19 +12,7 @@ const Expenses = () => {
 
     const [sorting, setSorting] = useState(false);
     const {account, screen, changeModalScreen} = useContext(GlobalContext)
-
-
-    setTimeout(() => {  
-        
-        const grid = new Muuri('.expensesListview', {
-            dragEnabled: sorting,
-            }); 
-        }, 200
-
-      );
-
-
-
+    console.log(sorting)
 
 
     const orders = [
@@ -31,9 +20,6 @@ const Expenses = () => {
         {screen: "SORT_EXPENSE_LIST", item: null},
         {screen: "SORT_EXPENSE_LIST", item: null}
     ]
-
-
-
 
     return (
         
@@ -59,17 +45,21 @@ const Expenses = () => {
                 </div>
             </div>
             <div>
+
+            <ExpensesSortableListview sorting={sorting}/>
+
+
     
 
 
-                <ul className="expensesListview">
+                {/* <ul className="expensesListview">
         
                     {account.expenses.map((expense) => 
                         <Expense key={expense.id} sorting={sorting} info={expense} />
                     )} 
 
 
-                </ul>                    
+                </ul>                     */}
 
         </div>
 

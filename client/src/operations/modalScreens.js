@@ -21,8 +21,8 @@ export const DeleteExpenseScreen = (props) => {
         extraInfo = null;
     }
     return (
-        <div className="smallScreen">
-            <h2>Delete this expense?</h2>
+        <div className="smallScreen noselect">
+            <h2 className="noCallout noselect">Delete this expense?</h2>
             {extraInfo}
             <ul className="selectOptions">
                 <li><button onClick={()=> operation(order)}>Confirm</button></li>
@@ -46,7 +46,7 @@ export const UpdateTransactionScreen = (props) => {
 
     return (
         <div>
-            <h2>Update Transaction</h2>
+            <h2 className="noselect">Update Transaction</h2>
 
             <ul className="selectOptions">
                 <li><button onClick={()=> operation(order)}>Confirm</button></li>
