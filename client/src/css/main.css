@@ -59,3 +59,28 @@ div.content.greyBackground {
 	border: dotted 2px #000;
 }
 
+.centerText {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.selectOptions ul li button.checkboxButton {
+	border-radius: 30px;
+	border: 1px solid #000;
+	display: flex;
+    justify-content: space-between;
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.selectOptions ul li button.checkboxButton input {
+	width: auto !important;
+
+}
+
+

@@ -45,7 +45,7 @@
     position: fixed; 
     z-index: 2;
     width: 100%;
-    max-width: 75%;
+    max-width: 80%;
     bottom: -9999px;
     overflow-x: hidden; 
     overflow-y: hidden;
@@ -59,7 +59,6 @@
 }
 
 .popupComponent .popup div {
-    display:block;
     margin-bottom: 5px;
 
 }
@@ -80,6 +79,7 @@
 .popupComponent .popup ul {
     list-style-type: none;
     padding: 0;
+    margin: 30px 0px 0px 0px;
 }
 
 .popupComponent .popup ul button {
@@ -106,4 +106,13 @@
 
     cursor: pointer;
 
+}
+
+.popupComponent .popup ul button:focus  {
+    outline: 0;
+    box-shadow: 0 0 0 5px #19f;
+}
+
+.popupComponent .popup ul button:active  {
+  transform: scale(.9);
 }

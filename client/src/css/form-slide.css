@@ -1,0 +1,42 @@
+.formSlide {
+    height: 400px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.formSlider .flickity-prev-next-button {
+    top: 100%;
+    z-index: 1;
+
+}
+
+.formSlider .flickity-button:disabled {
+    visibility: hidden;
+}
+
+.formSlider .flickity-page-dots {
+    bottom: -8px;
+}
+ .formSlider .instructions {
+    padding: 15px 30px 15px 30px;
+ }
+ .formSlider .instructions span {
+    font-weight: bold;
+ }
+
+ .formSlide .DayPicker {
+     display: inline;
+     font-size: 18px;
+ }
+
+.popupComponent .popup div .formSlider .horizontal input, .popupComponent .popup div .formSlider .horizontal label {
+    width: auto;
+}
+
+ul.selectOptions li button {
+    border-radius: 0px;
+    border: 1px solid #000;
+}
+

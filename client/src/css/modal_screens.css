@@ -26,3 +26,12 @@
           -ms-user-select: none; 
               user-select: none; 
 }
+
+.popupComponent .popup div.horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.popupComponent .popup div > h2, .popupComponent .popup div > p {
+    margin-top: 0;
+}
