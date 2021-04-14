@@ -1,11 +1,11 @@
 import React, {useContext, useState} from 'react';
 import GlobalContext from '../user-context';
-import currencyFormat from './conversions';
+import {currencyFormat, addDateSuffix} from './conversions';
 import Flickity from 'react-flickity-component';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
-import '../css/form-slide.css'
+import '../css/form-slide.css';
 
 export const DeleteExpenseScreen = (props) => {
     
@@ -19,7 +19,7 @@ export const DeleteExpenseScreen = (props) => {
 
     }
 
-    let extraInfo = <><p>Your funds from <span className="strong">{title}</span> will be moved to safe-to-spend</p>
+    let extraInfo = <><p>Your funds from <span className="strong">{title}</span> will be moved to Balance-To-Budget</p>
             <p className="strong">Funds: {currencyFormat(amountSaved)}</p></>
     if(amountSaved <= 0){
         extraInfo = null;
@@ -71,20 +71,20 @@ export const AddExpenseScreen = (props) => {
         title: '',
         amount: 0,
         amountSaved: 0,
-        dueDate: null,
-        moneyIn: 'Payday/No Automatic Funding',
-        contribution: 'Reach Target Balance/Set Aside Target Amount',
+        dueDate: new Date,
+        moneyIn: 'No Automatic Funding',
+        contribution: 'Reach Target Balance',
         moneyOut: 'No Automatic Spending',
         recentTransactions: [],
-        checked: false
     })
 
-    const {title, amount, dueDate, checked} = newExpense;
     
     const onChange = (e) => {
         setNewExpense({ ...newExpense, [e.target.name]: e.target.value });
+        console.log(newExpense)
     }
 
+    const {title, amount, dueDate, moneyIn, contribution} = newExpense;
 
     const order = {type: 'ADD_EXPENSE', item: null}
     const flickityOptions ={ cellAlign: 'left',wrapAround: false,groupCells: 1,contain: true,prevNextButtons: true,pageDots: true}
@@ -99,31 +99,61 @@ export const AddExpenseScreen = (props) => {
                 <Flickity options={flickityOptions}>
                     <div className="formSlide">
                         <label htmlFor="expenseName">Expense Title:</label>
-                        <input type="text" id="expenseName" placeholder="enter your expense title here"/>							
+                        <input onChange={e => onChange(e)} name="title" type="text" id="expenseName" placeholder="enter your expense title here"/>							
                     </div>
                     <div className="formSlide">
                         <div className="horizontal">
                             <label htmlFor="amount">Amount:</label>
-                            <input type="text" id="amount" placeholder="your monthly amount" required pattern="[0-9]"/>						
+                            <input onChange={e => onChange(e)} name="amount" type="text" id="amount" placeholder="your monthly amount" required pattern="[0-9]"/>						
                         </div>
                         <p className="centerText instructions"><span>Tip:</span> Enter the amount you need monthly.</p>
 
                     </div>
                     <div className="formSlide">
-                        <DayPicker onDayClick={(day) => setNewExpense({dueDate: day})} selectedDays={dueDate} />
-                            {dueDate ? (<p className="centerText instructions">You selected {dueDate.toLocaleDateString()}</p>) 
+                        <DayPicker onDayClick={(day) => setNewExpense({...newExpense, dueDate: day})} selectedDays={dueDate} />
+                            {dueDate ? (<p className="centerText instructions">You selected {dueDate.toLocaleString()}</p>) 
                             : (<p className="centerText instructions">Enter the date you need {currencyFormat(amount)} by.</p>)}
                     </div>
                     <div className="formSlide">
                         <p className="centerText bold">How do you want money to be moved to this expense?</p>
-                        <div className="selectOptions">
-                            <ul>
-                        
-                                <li><button className="checkboxButton">On Payday<input  type="checkbox" checked={checked} value="On Payday"/></button></li>
-                                <li><button className="checkboxButton">No Automatic Funding<input  type="checkbox"  checked={checked} value="On Payday"/></button></li>
+                        <div className="selectOption">
+                            <ul onChange={e => onChange(e)}>
+                                <li><label className="radioButton" htmlFor="No Automatic Funding" >No Automatic Funding<input type="radio" id="No Automatic Funding" name="moneyIn"  value="No Automatic Funding" defaultChecked/></label></li>
+                                <li><label className="radioButton" htmlFor="On Payday" >On Payday<input type="radio" id="On Payday" name="moneyIn"  value="On Payday"/></label></li>
 
                             </ul>
                         </div>
+                    </div>
+                    <div className="formSlide">
+                        <p className="centerText bold">Stop saving once you reach {currencyFormat(amount)} per month, or set aside the same amount per month regardless?</p>
+                        <div className="selectOption">
+                            <ul onChange={e => onChange(e)}>
+                                <li><label className="radioButton" htmlFor="Reach Target Balance" >Reach Target Balance<input type="radio" id="Reach Target Balance" name="contribution"  value="Reach Target Balance" defaultChecked/></label></li>
+                                <li><label className="radioButton" htmlFor="Set Aside Target Amount" >Set Aside Target Amount<input type="radio" id="Set Aside Target Amount" name="contribution"  value="Set Aside Target Amount"/></label></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="formSlide">
+                        <div>
+                            <br/><br/>
+                            <h3 className="centerText">{title}</h3>
+                            <p className="centerText">You need <span className="bold">{currencyFormat(amount)}</span> by the <span className="bold">{addDateSuffix(dueDate)}</span> of each month.</p>
+                            <br/>
+                            <p className="centerText">{moneyIn === "No Automatic Funding" ? 
+                            "You will add money from your Balance-to-Budget into this expense manually."
+                            : "We will move the amount you need into this expense automatically on payday."}</p>
+                            <p className="centerText">   {contribution === "Reach Target Balance" ? 
+                            `Once you reach ${currencyFormat(amount)}, we will not move any more money into this expense.`
+                            : `We will move ${currencyFormat(amount)} a month into this expense until you change your mind.`
+                            }
+                            </p>
+                            <br/><br/>
+                        </div> 
+                       
+                           
+                        <p className="centerText bold">Press confirm if everything looks good:</p>
+
                     </div>
                 </Flickity>                
             </div>

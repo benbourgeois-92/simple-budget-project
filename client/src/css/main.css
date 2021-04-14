@@ -67,7 +67,7 @@ div.content.greyBackground {
 	font-weight: bold;
 }
 
-.selectOptions ul li button.checkboxButton {
+.selectOption ul li .radioButton {
 	border-radius: 30px;
 	border: 1px solid #000;
 	display: flex;
@@ -75,12 +75,27 @@ div.content.greyBackground {
 	max-width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+    background-color: #fff;
+    font-family: 'Sen', sans-serif !important;
+	margin-bottom: 5px;
+}
+
+.selectOption ul li .radioButton:hover, .selectOption ul li .radioButton:focus  {
+    cursor: pointer;
+    background-color: #f1f3f4;
+    font-weight: bold;
 
 }
 
-.selectOptions ul li button.checkboxButton input {
-	width: auto !important;
+.selectOption ul li .radioButton:active {
+    transform: scale(.9);
+}
 
+.selectOption ul li .radioButton input {
+	width: auto !important;
 }
 
 
