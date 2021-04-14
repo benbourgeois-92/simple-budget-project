@@ -67,27 +67,31 @@ export const AddExpenseScreen = (props) => {
     const {togglePopup, operation, screen} = useContext(GlobalContext);
     const[dateState, setDateState] = useState(null)
     const [newExpense, setNewExpense] = useState({
-        id: null,
-        title: '',
-        amount: 0,
-        amountSaved: 0,
-        dueDate: new Date,
-        moneyIn: 'No Automatic Funding',
-        contribution: 'Reach Target Balance',
-        moneyOut: 'No Automatic Spending',
-        recentTransactions: [],
+            id: null,
+            title: '',
+            amount: 0,
+            amountSaved: 0,
+            dueDate: new Date,
+            moneyIn: 'No Automatic Funding',
+            contribution: 'Reach Target Balance',
+            moneyOut: 'No Automatic Spending',
+            recentTransactions: []
     })
+
+    const [addScreen, setAddScreen] = useState({screensComplete: [], disabled: true})
+
 
     
     const onChange = (e) => {
         setNewExpense({ ...newExpense, [e.target.name]: e.target.value });
-        console.log(newExpense)
+        setAddScreen ({...addScreen, screensComplete.append()[e.target.name]: })
     }
 
     const {title, amount, dueDate, moneyIn, contribution} = newExpense;
+    const {screensComplete, disabled} = addScreen;
 
     const order = {type: 'ADD_EXPENSE', item: null}
-    const flickityOptions ={ cellAlign: 'left',wrapAround: false,groupCells: 1,contain: true,prevNextButtons: true,pageDots: true}
+    const flickityOptions ={ cellAlign: 'left', wrapAround: false, groupCells: 1,contain: true, prevNextButtons: true,pageDots: true}
     
     return (
             
@@ -158,7 +162,7 @@ export const AddExpenseScreen = (props) => {
                 </Flickity>                
             </div>
                 <ul>
-                    <li><button onClick={()=> operation(order)}>Confirm</button></li>
+                    <li><button className={disabled ? "disabled":""}onClick={()=> operation(order)}>Confirm</button></li>
                     <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
                 </ul>              
             </div>

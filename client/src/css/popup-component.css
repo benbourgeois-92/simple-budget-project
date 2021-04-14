@@ -108,6 +108,11 @@
 
 }
 
+.popupComponent .popup ul button.disabled:hover {
+    background-color: orangered ;
+    color: #fff;
+}
+
 .popupComponent .popup ul button:focus  {
     outline: 0;
     box-shadow: 0 0 0 5px #19f;
