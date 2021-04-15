@@ -27,9 +27,11 @@
  }
 
  .formSlide .DayPicker {
-     display: inline;
-     font-size: 18px;
- }
+    display: table;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .popupComponent .popup div .formSlider .horizontal input, .popupComponent .popup div .formSlider .horizontal label {
     width: auto;
@@ -38,5 +40,12 @@
 ul.selectOptions li button {
     border-radius: 0px;
     border: 1px solid #000;
+}
+
+ul.slideList {
+    padding: 0px 0px 0px 24px !important;
+    margin: 0 auto 0 auto !important;
+    list-style-type: disc !important;
+    max-width: 500px;
 }
 
