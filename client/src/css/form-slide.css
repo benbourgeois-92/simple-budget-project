@@ -43,9 +43,11 @@ ul.selectOptions li button {
 }
 
 ul.slideList {
+    
     padding: 0px 0px 0px 24px !important;
     margin: 0 auto 0 auto !important;
     list-style-type: disc !important;
     max-width: 500px;
+
 }
 

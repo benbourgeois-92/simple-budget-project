@@ -35,13 +35,32 @@ export const AppReducer = (state, action) => {
             }
         }
         case 'DELETE_ITEM':
+
+            const expenses = state.account.expenses;
+            expenses.filter((expense) => expense.id === action.payload.item.id);
+
+        console.log(expenses)
             return {
                 ...state,
                 account: {
                     balance: state.account.balance + action.payload.item.amountSaved,
-                    expenses: state.account.expenses.filter((expense) => expense.id !== action.payload.item.id),
+                    expenses: expenses,
                     goals: state.account.goals,                
-                    transactions: state.account.transactions,
+                    transactions: state.account.transactions
+            }  
+        }
+        case 'ADD_EXPENSE':
+
+            const newExpenses = state.account.expenses;
+            newExpenses.push(action.payload.item)
+
+            return {
+                ...state,
+                account: {
+                    balance: state.account.balance,
+                    expenses: newExpenses,
+                    goals: state.account.goals,                
+                    transactions: state.account.transactions
             }  
         }
         default:

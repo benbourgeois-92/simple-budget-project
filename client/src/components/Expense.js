@@ -2,24 +2,18 @@ import React, {useContext} from 'react';
 import GlobalContext from '../user-context'
 import '../css/expenses-component.css'
 import '../css/jiggle-animation.css'
-import '../css/draggable.css'
 import Flickity from 'react-flickity-component'
-import currencyFormat from '../operations/conversions'
+import {currencyFormat, addDateSuffix} from '../operations/conversions';
 
 
 const Expense = ( props) => {
 
-    const draggableStyles = {
-        transition: props.isDragging ? 'none' : 'all 500ms',
-        top: `${props.top}px`,
-        position: 'absolute'
-    }
 
     const {changeModalScreen} = useContext(GlobalContext);
 
     const expense = props.info;
     const sorting = props.sorting;
-    const {title, amount, amountSaved, dueDate, moneyOut } = expense;
+    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut } = expense;
 
     const spanStyles = {
         color: '#ef3f3a',
@@ -50,7 +44,7 @@ const Expense = ( props) => {
 
         return (
 
-                <li style={draggableStyles}  className="individualExpense  listElement-carousel">
+                <li className="individualExpense  listElement-carousel">
                     <div className={sorting ? "sorting isClicked" : "isClicked"}>
                         <Flickity options={flickityOptions}>
 
@@ -58,7 +52,7 @@ const Expense = ( props) => {
                                 <div>
                                     <h3>{title}</h3>
                                     <p><span>{currencyFormat(amountSaved)}</span> of {currencyFormat(amount)}</p>
-                                    <p>March 5th &bull; {dueDate}</p>
+                                    <p>March 5th &bull; {dueDateLabel}</p>
                                     <p><span>{currencyFormat(amount)}/Paycheck</span> &bull; <span style={spanStyles}>{moneyOut}</span></p>
 
                                 </div>

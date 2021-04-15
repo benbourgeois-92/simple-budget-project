@@ -67,11 +67,12 @@ export const AddExpenseScreen = (props) => {
     const {togglePopup, operation, screen} = useContext(GlobalContext);
     const[dateState, setDateState] = useState(null)
     const [newExpense, setNewExpense] = useState({
-            id: null,
+            id: 'asdfadfs',
             title: '',
             amount: 0,
             amountSaved: 0,
             dueDate: new Date,
+            dueDateLabel: 'no due date yet',
             moneyIn: 'No Automatic Funding',
             contribution: 'Reach Target Balance',
             moneyOut: 'No Automatic Spending',
@@ -84,15 +85,18 @@ export const AddExpenseScreen = (props) => {
     
     const onChange = (e) => {
         setNewExpense({ ...newExpense, [e.target.name]: e.target.value });
+        console.log(newExpense)
     }
 
     const handleDayClick = (day, modifiers) => {
-
         if (modifiers.disabled) {
-          return;
-        }
 
-        setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day})
+          return;
+
+        }else{
+         setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day})
+         setNewExpense({dueDateLabel: `the ${addDateSuffix(day)} of the month`})           
+        }
 
     }
 
@@ -103,17 +107,16 @@ export const AddExpenseScreen = (props) => {
     const year = new Date().getFullYear().toString();
     const endDate = new Date(year + "/12/31");
     const startDate = new Date(year + "/01/01");    
-    const disabledDays = []
+    const disabledDays = [];
 
     for(let arr=[], dt = new Date(startDate); dt <= endDate; dt.setDate(dt.getDate()+1)) {
             arr.push(new Date(dt));
-
             if(dt.getDate() > 28){
                 disabledDays.push(new Date(dt))
             }
         }
 
-    const order = {type: 'ADD_EXPENSE', item: null}
+    const order = {type: 'ADD_EXPENSE', item: newExpense}
     const flickityOptions ={ cellAlign: 'left', wrapAround: false, groupCells: 1,contain: true, prevNextButtons: true,pageDots: true}
     
     return (
@@ -172,11 +175,9 @@ export const AddExpenseScreen = (props) => {
                     </div>
                     <div className="formSlide">
                         <div>
-                            <br/><br/>
+                            <br/>
                             <h3 className="centerText">{title}</h3>
                             <p className="centerText">You need <span className="bold">{currencyFormat(amount)}</span> by the <span className="bold">{addDateSuffix(dueDate)}</span> of each month.</p>
-                            <br/>
-
                             <ul className="slideList">
                                 <li><p>{moneyIn === "No Automatic Funding" ? 
                                 "You will add money from your Balance-to-Budget into this expense manually."
@@ -188,7 +189,7 @@ export const AddExpenseScreen = (props) => {
                                 </p>
                                 </li>                             
                             </ul>
-                            <br/><br/>
+                            <br/>
                         </div> 
                        
                            
@@ -198,7 +199,7 @@ export const AddExpenseScreen = (props) => {
                 </Flickity>                
             </div>
                 <ul>
-                    <li><button className={disabled ? "disabled":""}onClick={()=> operation(order)}>Confirm</button></li>
+                    <li><button className={disabled ? "disabled":""} onClick={()=> operation(order)}>Confirm</button></li>
                     <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
                 </ul>              
             </div>
