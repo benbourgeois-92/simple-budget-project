@@ -36,15 +36,15 @@ export const AppReducer = (state, action) => {
         }
         case 'DELETE_ITEM':
 
-            const expenses = state.account.expenses;
-            expenses.filter((expense) => expense.id === action.payload.item.id);
+        console.log(action.payload.item.id)
+        const newList = state.account.expenses.filter(expense => expense.id !== action.payload.item.id);
+        console.log(newList);
 
-        console.log(expenses)
             return {
                 ...state,
                 account: {
                     balance: state.account.balance + action.payload.item.amountSaved,
-                    expenses: expenses,
+                    expenses: newList,
                     goals: state.account.goals,                
                     transactions: state.account.transactions
             }  

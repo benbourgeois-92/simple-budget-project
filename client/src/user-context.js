@@ -57,7 +57,8 @@ export const GlobalProvider = ({children}) => {
         }
 
         function operation(order){
-
+                console.log("operation: ")
+                console.log(order.item)
                 switch(order.type){
                         case 'DELETE_ITEM':
                                 dispatch({type: 'DELETE_ITEM', payload: order})

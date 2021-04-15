@@ -64,10 +64,11 @@ export const UpdateTransactionScreen = (props) => {
 
 export const AddExpenseScreen = (props) => {
 
+
     const {togglePopup, operation, screen} = useContext(GlobalContext);
     const[dateState, setDateState] = useState(null)
     const [newExpense, setNewExpense] = useState({
-            id: 'asdfadfs',
+            id: '',
             title: '',
             amount: 0,
             amountSaved: 0,
@@ -84,8 +85,8 @@ export const AddExpenseScreen = (props) => {
 
     
     const onChange = (e) => {
-        setNewExpense({ ...newExpense, [e.target.name]: e.target.value });
-        console.log(newExpense)
+        setNewExpense({ ...newExpense, [e.target.name]: e.target.value,id: Math.random().toString().substr(2, 5)});
+   
     }
 
     const handleDayClick = (day, modifiers) => {
@@ -94,8 +95,8 @@ export const AddExpenseScreen = (props) => {
           return;
 
         }else{
+        setNewExpense({...newExpense, dueDateLabel: `the ${addDateSuffix(day)} of the month`})           
          setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day})
-         setNewExpense({dueDateLabel: `the ${addDateSuffix(day)} of the month`})           
         }
 
     }
