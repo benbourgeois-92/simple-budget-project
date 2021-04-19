@@ -83,6 +83,7 @@
 }
 .expensesComponent .expensesSummary p {
     font-size: 6vw;
+    margin-bottom: 20px;
 }
 
 .expensesComponent .expensesSummary p span {

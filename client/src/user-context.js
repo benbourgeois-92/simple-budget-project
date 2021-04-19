@@ -22,7 +22,7 @@ export const app = {
         account: {
 
                 balance: 0,
-                expenses: [],
+                expenses: expenseList,
                 expenseOrder: [],
                 goals: [],                
                 transactions: transactions
@@ -63,12 +63,17 @@ export const GlobalProvider = ({children}) => {
                         case 'DELETE_ITEM':
                                 dispatch({type: 'DELETE_ITEM', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
                         case 'ADD_EXPENSE':
                                 dispatch({type: 'ADD_EXPENSE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
+
                         case 'UPDATE_EXPENSE':
                                 dispatch({type: 'UPDATE_EXPENSE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
+
 
                         default:
                                 return;
