@@ -13,15 +13,18 @@ const Expense = ( props) => {
 
     const expense = props.info;
     const sorting = props.sorting;
-    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut } = expense;
+    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
 
-    const spanStyles = {
-        color: '#ef3f3a',
+    const spanStyles = {color: '#ef3f3a'}
+    let fundingStatus = '';
+    if(moneyIn === 'On Payday'){
+        fundingStatus = (<span>{currencyFormat(amount)}/Paycheck</span>);
+    }else {
+        fundingStatus = (<span style={spanStyles}>{moneyIn}</span>);
     }
+
     const width = (amountSaved/amount)*100
-
     const statusBarWidth = width.toString() + '%';
-
     const statusBarStyles = {
         backgroundColor: '#ff9b42',
         width: statusBarWidth
@@ -53,7 +56,9 @@ const Expense = ( props) => {
                                     <h3>{title}</h3>
                                     <p><span>{currencyFormat(amountSaved)}</span> of {currencyFormat(amount)}</p>
                                     <p>March 5th &bull; {dueDateLabel}</p>
-                                    <p><span>{currencyFormat(amount)}/Paycheck</span> &bull; <span style={spanStyles}>{moneyOut}</span></p>
+
+
+                                    <p>{fundingStatus} &bull; <span style={spanStyles}>{moneyOut}</span></p>
 
                                 </div>
                                 <div>

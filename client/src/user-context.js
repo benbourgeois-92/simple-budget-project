@@ -21,7 +21,8 @@ export const app = {
         },
         account: {
 
-                balance: 0,
+                balance: 2033.33,
+                payday: new Date(),
                 expenses: expenseList,
                 expenseOrder: [],
                 goals: [],                
@@ -57,7 +58,7 @@ export const GlobalProvider = ({children}) => {
         }
 
         function operation(order){
-                console.log("operation: ")
+                console.log("operating on this object: ")
                 console.log(order.item)
                 switch(order.type){
                         case 'DELETE_ITEM':
@@ -73,8 +74,6 @@ export const GlobalProvider = ({children}) => {
                                 dispatch({type: 'UPDATE_EXPENSE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
-
-
                         default:
                                 return;
                 }

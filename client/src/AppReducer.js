@@ -36,7 +36,7 @@ export const AppReducer = (state, action) => {
         }
         case 'DELETE_ITEM':
 
-
+      
             return {
                 ...state,
                 account: {
@@ -47,13 +47,12 @@ export const AppReducer = (state, action) => {
             }  
         }
         case 'ADD_EXPENSE':
-
             
             return {
                 ...state,
                 account: {
                     balance: state.account.balance,
-                    expenses: [action.payload.item, ...state.account.expenses],
+                    expenses: [...state.account.expenses, action.payload.item],
                     goals: state.account.goals,                
                     transactions: state.account.transactions
             }  

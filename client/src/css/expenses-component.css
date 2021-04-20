@@ -8,7 +8,7 @@
 
     width: 100%;
     max-width: 100%;
-    min-height: 1200px;
+    min-height: 812px;
     background-color: #fafafa;
     color: #313d46;
     /*subtext color:  #8f949b Emergency color: #ef3f3a*/
@@ -18,37 +18,48 @@
 }
 .expensesComponent .expensesSummary {
     border-bottom: 1px solid #e0e0e0;
-    padding: 15px;
+    padding: 30px 30px 15px 15px;
 }
 .expensesComponent .expensesSummary button.squareIcon {
     width: 50px;
     height: 50px;
     display: block;
-    border: 1px solid transparent;
+    border: 1px solid #e0e0e0;
     background-size: 25px 25px !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: all 0.5s ease-in-out;
+    background-color:#fff;
 
 }
 
 
 .expensesComponent .expensesSummary button.squareIcon:hover, .expensesComponent .expensesSummary button.squareIcon:focus {
-    background-color:#fff;
     cursor: pointer;
-    transform: scale(1.1);
-    border: 1px solid #e0e0e0;
+    transform: scale(.9);
+    background-color: #fff;
+    color: #fff;
+    border: 2px solid #e0e0e0;
 
 }
+
+.expensesComponent .expensesSummary button.squareIcon:active {
+transform: scale(.9);
+}
+
 
 .expensesComponent .expensesSummary ul {
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0;
-    margin: 0;
+    margin-top: 30px;
+}
+
+.expensesComponent .expensesSummary ul li:not(:last-of-type){
+    padding-right: 15px;
 }
 
 .expensesComponent .expensesSummary .squareIcon.edit {
@@ -67,22 +78,25 @@
 
 }
 
-.expensesComponent .expensesSummary h2, .expensesComponent .expensesSummary h2 + p {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 2.25em;
+.expensesComponent .expensesSummary h2 {
+  text-align: left;
+  font-size: 9vw;
+  margin-bottom: 0;
+  border-left: 5px solid;
+  padding-left: 20px;
+}
 
-}
-.expensesComponent .expensesSummary h2 + p + p {
-    text-align: center;
-}
 
 .expensesComponent .expensesSummary h2, .expensesComponent .expensesSummary p {
     margin-top: 0;
-    text-align: center;
+    text-align: left;
 }
 .expensesComponent .expensesSummary p {
-    font-size: 6vw;
+    font-size: 5vw;
+    display: block;
+    margin-left: 3px;
+}
+.expensesComponent .expensesSummary p:not(:last-of-type) {
     margin-bottom: 20px;
 }
 
@@ -96,7 +110,8 @@
     display: inline-block;
     width: 100%;
     margin-top: 0px;
-    min-height: 1200px
+    min-height: 439px;
+    margin-bottom: 0px;
 
 }
 
@@ -110,20 +125,11 @@
     font-weight: bold;
 }
 
-.expensesComponent .individualExpense button:first-child:hover {
-    cursor: pointer;
-    background-color: #313d46;
-    color: #fff;
-}
 .expensesComponent .individualExpense button:first-child:hover  {
-    color: #fff;
     cursor: pointer;
 
 }
 
-.expensesComponent .individualExpense button:first-child:hover  .statusBar {
-    border-color: #fff;
-}
 
 .expensesComponent .individualExpense button.editButton:hover {
     background: rgba(165, 56, 96, .7);
@@ -151,8 +157,7 @@
     border: none;
     width: 100%;
     text-align: left;
-    padding-top: 15px;
-    padding-bottom: 15px; 
+    padding: 15px;
     font-family: 'Sen', sans-serif;
     font-size: 1em;
 }
@@ -171,22 +176,24 @@
 
 
 
+
 .expensesComponent .individualExpense button div p, .expensesComponent .individualExpense button div h2 {
     display:block;
 }
 
 .expensesComponent .individualExpense button > div:first-child {
     width: 80%;
-    padding-left: 15px;
 }
 .expensesComponent .individualExpense button > div:last-child {
     width: 20%;
-    padding-right: 15px;
 }
 .expensesComponent .individualExpense button > div:first-child h3, .expensesComponent .individualExpense button > div:first-child p {
     margin-top: 0;
+    font-size: .85em;
 }
-
+.expensesComponent .individualExpense button > div:first-child h3 {
+    font-size: 1em;
+}
 .expensesComponent .individualExpense button > div:first-child p:last-child {
     margin-bottom: 0;
 }
@@ -204,6 +211,7 @@
     display: flex;
     margin-top: 5px;
     width: 100%;
+    box-sizing: border-box;
 }
 .expensesComponent .individualExpense .statusBar span {
     display: block;

@@ -7,7 +7,7 @@ const expenseList = [
         amountSaved: 2,
         dueDate: new Date("2020/01/05"),
         dueDateLabel: 'the 5th of every month',
-        moneyIn: 'Payday/No Automatic Funding',
+        moneyIn: 'No Automatic Funding',
         contribution: 'Reach Target Balance/Set Aside Target Amount',
         moneyOut: 'No Automatic Spending',
         recentTransactions: []
@@ -19,7 +19,7 @@ const expenseList = [
     amountSaved: 2000,
     dueDate: new Date("2020/01/05"),
     dueDateLabel: 'the 5th of every month',
-    moneyIn: 'Payday',
+    moneyIn: 'On Payday',
     contribution: 'Set Aside Target Amount',
     moneyOut: 'No Automatic Spending',
     recentTransactions: []
@@ -31,7 +31,7 @@ const expenseList = [
     amountSaved: 0,
     dueDate: new Date("2020/01/05"),
     dueDateLabel: 'the 5th of every month',
-    moneyIn: 'Payday',
+    moneyIn: 'On Payday',
     contribution: 'Set Aside Target Amount',
     moneyOut: 'No Automatic Spending',
     recentTransactions: [
@@ -54,7 +54,7 @@ const expenseList = [
     amountSaved: 23.32,
     dueDate: new Date("2020/01/05"),
     dueDateLabel: 'the 5th of every month',
-    moneyIn: 'Payday',
+    moneyIn: 'On Payday',
     contribution: 'Set Aside Target Amount',
     moneyOut: 'Tracfone Airtime',
     recentTransactions: [
@@ -72,7 +72,7 @@ const expenseList = [
     amountSaved: 115,
     dueDate: new Date("2020/01/05"),
     dueDateLabel: 'the 5th of every month',
-    moneyIn: 'Payday',
+    moneyIn: 'On Payday',
     contribution: 'Set Aside Target Amount',
     moneyOut: 'Tracfone Airtime',
     recentTransactions: [

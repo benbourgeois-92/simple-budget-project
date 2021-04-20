@@ -37,7 +37,6 @@ export const DeleteExpenseScreen = (props) => {
 
     )
 }
-
 export const UpdateTransactionScreen = (props) => {
     
     const {togglePopup, operation, screen} = useContext(GlobalContext);
@@ -61,14 +60,79 @@ export const UpdateTransactionScreen = (props) => {
 
     )
 }
+export const UpdatePaydayScreen = (props) => {
+    
+    const {togglePopup, screen, operation} = useContext(GlobalContext);
 
+    const [newExpense, setNewExpense] = useState({
+        id: '',
+        title: '',
+        amount: 0,
+        amountSaved: 0,
+        dueDate: new Date,
+        dueDateLabel: 'no due date yet',
+        moneyIn: 'No Automatic Funding',
+        contribution: 'Reach Target Balance',
+        moneyOut: 'No Automatic Spending',
+})
+    const order = {
+        type: 'UPDATE_PAYDAY',
+        item: screen.item
+    }
+    const handleDayClick = (day, modifiers) => {
+        if (modifiers.disabled) {
+
+          return;
+
+        }else{
+         setNewExpense({...newExpense, dueDateLabel: `the ${addDateSuffix(day)} of the month`})           
+         setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day})
+        }
+
+    }
+
+      
+    const {title, amount, dueDate, moneyIn, contribution} = newExpense;
+
+    const year = new Date().getFullYear().toString();
+    const endDate = new Date(year + "/12/31");
+    const startDate = new Date(year + "/01/01");    
+    const disabledDays = [];
+
+    for(let arr=[], dt = new Date(startDate); dt <= endDate; dt.setDate(dt.getDate()+1)) {
+            arr.push(new Date(dt));
+            if(dt.getDate() > 28){
+                disabledDays.push(new Date(dt))
+            }
+        }
+
+
+    return (
+        <div className="smallScreen noselect">
+            <h2 className="noCallout noselect">When do you get paid?</h2>
+            <p>We'll check in a range around what day you select if your income doesn't arrive.</p>
+
+            <div className="formSlide">
+                        <DayPicker onDayClick={handleDayClick} selectedDays={dueDate} fromMonth={startDate} toMonth={endDate} disabledDays={disabledDays}/>
+                            {dueDate ? (<p className="centerText instructions">You selected {dueDate.toLocaleString()}</p>) 
+                            : (<p className="centerText instructions">Enter the date you need {currencyFormat(amount)} by.</p>)}
+            </div>
+
+            <ul className="selectOptions">
+                <li><button onClick={()=> operation(order)}>Confirm</button></li>
+                <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
+            </ul>
+        
+        </div>
+
+    )
+}
 export const AddExpenseScreen = (props) => {
 
-
+    const expenseId = Math.random().toString().substr(2, 5);
     const {togglePopup, operation, screen} = useContext(GlobalContext);
-    const[dateState, setDateState] = useState(null)
     const [newExpense, setNewExpense] = useState({
-            id: '',
+            id: expenseId,
             title: '',
             amount: 0,
             amountSaved: 0,
@@ -85,7 +149,13 @@ export const AddExpenseScreen = (props) => {
 
     
     const onChange = (e) => {
-        setNewExpense({ ...newExpense, [e.target.name]: e.target.value,id: Math.random().toString().substr(2, 5)});
+
+        if(e.target.name === 'amount'){
+            setNewExpense({ ...newExpense, [e.target.name]: parseFloat(e.target.value), id: Math.random().toString().substr(2, 5)});
+
+        }else {
+            setNewExpense({ ...newExpense, [e.target.name]: e.target.value, id: Math.random().toString().substr(2, 5)});
+        }
    
     }
 

@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import GlobalContext from '.././user-context';
 import '../css/popup-component.css';
-import {AddExpenseScreen, DeleteExpenseScreen, DefaultScreen, UpdateTransactionScreen, EditExpenseScreen} from '../operations/modalScreens';
+import {UpdatePaydayScreen, AddExpenseScreen, DeleteExpenseScreen, DefaultScreen, UpdateTransactionScreen, EditExpenseScreen} from '../operations/modalScreens';
 
 const Popup = () => {
 
@@ -25,6 +25,9 @@ const Popup = () => {
 			break;
 		case 'UPDATE_EXPENSE':
 			ModalScreen = <EditExpenseScreen/>
+			break;
+		case 'UPDATE_PAYDAY':
+			ModalScreen = <UpdatePaydayScreen/>
 			break;
 		case 'DEFAULT':
 			ModalScreen = <DefaultScreen/>
