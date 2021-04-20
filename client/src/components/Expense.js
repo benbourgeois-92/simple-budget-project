@@ -17,6 +17,7 @@ const Expense = ( props) => {
 
     const spanStyles = {color: '#ef3f3a'}
     let fundingStatus = '';
+    
     if(moneyIn === 'On Payday'){
         fundingStatus = (<span>{currencyFormat(amount)}/Paycheck</span>);
     }else {

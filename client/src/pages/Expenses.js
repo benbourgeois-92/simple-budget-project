@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
 import GlobalContext from '../user-context' ;
-import currencyFormat from '../operations/conversions';
+import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 const Expenses = () => {
 
@@ -12,13 +12,17 @@ const Expenses = () => {
     const nbrOfExpenses = account.expenses.length;
     var amountSaved = 0.0;
     var totalBudgeted = 0.0;
+    let payday;
+
+    if(new Date().getDate() < account.payday.getDate()){
+        payday = month[new Date().getMonth()] + ' ' + addDateSuffix(account.payday);
+    }else {
+        payday = month[new Date().getMonth() + 1] + ' ' + addDateSuffix(account.payday);
+    }
 
     for(var i = 0; i < nbrOfExpenses; i++){
-
         amountSaved += account.expenses[i].amountSaved;
         totalBudgeted += parseFloat(account.expenses[i].amount);
-        console.log("amount: " + totalBudgeted)
-
     }
     
 
@@ -39,7 +43,7 @@ const Expenses = () => {
                 <p><span>Saved: </span>{currencyFormat(amountSaved)}</p>
                 <p><span>Balance-to-Budget </span>{currencyFormat(account.balance)}</p>
                 <p><span>Outgoing: </span>{currencyFormat(totalBudgeted)} per paycheck</p>
-                <p><span>Payday: </span>March 5th</p>	                
+                <p><span>Payday: </span>{payday}</p>	                
                  
                     <div>
                         <ul>

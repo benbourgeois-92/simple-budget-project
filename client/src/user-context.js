@@ -58,8 +58,10 @@ export const GlobalProvider = ({children}) => {
         }
 
         function operation(order){
+
                 console.log("operating on this object: ")
                 console.log(order.item)
+
                 switch(order.type){
                         case 'DELETE_ITEM':
                                 dispatch({type: 'DELETE_ITEM', payload: order})
@@ -69,9 +71,12 @@ export const GlobalProvider = ({children}) => {
                                 dispatch({type: 'ADD_EXPENSE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
-
                         case 'UPDATE_EXPENSE':
                                 dispatch({type: 'UPDATE_EXPENSE', payload: order})
+                                dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
+                        case 'UPDATE_PAYDAY':
+                                dispatch({type: 'UPDATE_PAYDAY', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
                         default:

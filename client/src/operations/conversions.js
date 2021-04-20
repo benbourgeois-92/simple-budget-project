@@ -16,5 +16,21 @@ export const addDateSuffix = (dt) => {
 
 } 
 
+export const month= ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+export const getDisabledDays = (startDate, endDate) => {
+
+      const disabledDaysList = [];
+      
+        for(let arr=[], dt = new Date(startDate); dt <= endDate; dt.setDate(dt.getDate()+1)) {
+          arr.push(new Date(dt));
+          if(dt.getDate() > 28){
+              disabledDaysList.push(new Date(dt))
+          }
+      }
+
+      return disabledDaysList;
+
+}
 
 export default currencyFormat;

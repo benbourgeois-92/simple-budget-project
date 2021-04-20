@@ -41,6 +41,7 @@ export const AppReducer = (state, action) => {
                 ...state,
                 account: {
                     balance: state.account.balance + action.payload.item.amountSaved,
+                    payday: state.account.payday,
                     expenses: state.account.expenses.filter(expense => expense.id !== action.payload.item.id),
                     goals: state.account.goals,                
                     transactions: state.account.transactions
@@ -52,7 +53,19 @@ export const AppReducer = (state, action) => {
                 ...state,
                 account: {
                     balance: state.account.balance,
+                    payday: state.account.payday,
                     expenses: [...state.account.expenses, action.payload.item],
+                    goals: state.account.goals,                
+                    transactions: state.account.transactions
+            }  
+        }
+        case 'UPDATE_PAYDAY':
+            return {
+                ...state,
+                account: {
+                    balance: state.account.balance,
+                    payday: action.payload.item,
+                    expenses: state.account.expenses,
                     goals: state.account.goals,                
                     transactions: state.account.transactions
             }  
