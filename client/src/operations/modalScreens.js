@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, getDisabledDays} from './conversions';
 import Flickity from 'react-flickity-component';
@@ -6,6 +6,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
 import '../css/form-slide.css';
+import '../css/incorrect-shake.css';
 
 export const DeleteExpenseScreen = (props) => {
     
@@ -101,7 +102,7 @@ export const UpdatePaydayScreen = (props) => {
 
             <div className="formSlide">
                 <DayPicker changeMonth={false} onDayClick={handleDayClick} selectedDays={dueDate} fromMonth={new Date()} toMonth={new Date()} disabledDays={disabledDays}/>
-                            {dueDate ? (<p className="centerText instructions">You selected the {addDateSuffix(dueDate)} of every month.</p>) 
+                            {dueDate ? (<p className="centerText instructions">You selected the <span className="bold">{addDateSuffix(dueDate)} </span>of every month.</p>) 
                             : null }
             </div>
 
@@ -114,6 +115,7 @@ export const UpdatePaydayScreen = (props) => {
 
     )
 }
+
 export const AddExpenseScreen = (props) => {
 
     const expenseId = Math.random().toString().substr(2, 5);
@@ -124,24 +126,39 @@ export const AddExpenseScreen = (props) => {
             amount: 0,
             amountSaved: 0,
             dueDate: new Date,
-            dueDateLabel: 'no due date yet',
+            dueDateLabel: `the ${addDateSuffix(new Date)} of the month`,
             moneyIn: 'No Automatic Funding',
             contribution: 'Reach Target Balance',
             moneyOut: 'No Automatic Spending',
             recentTransactions: []
     })
 
-    const [addScreen, setAddScreen] = useState({screensComplete: [], disabled: true})
+    const [addScreen, setAddScreen] = useState({
 
+        title: false,
+        amount: false,
+        moneyIn: true,
+        contribution: true,
+        disabled: true
 
-    
+    })
+
     const onChange = (e) => {
+
+        setAddScreen({...addScreen, [e.target.name]: true});
 
         if(e.target.name === 'amount'){
             setNewExpense({ ...newExpense, [e.target.name]: parseFloat(e.target.value), id: Math.random().toString().substr(2, 5)});
-
         }else {
             setNewExpense({ ...newExpense, [e.target.name]: e.target.value, id: Math.random().toString().substr(2, 5)});
+        }
+
+        if( addScreen.title  == true &&
+            addScreen.amount  == true &&
+            addScreen.moneyIn  == true &&
+            addScreen.contribution == true)
+            {
+        setAddScreen({...addScreen, disabled: false});
         }
    
     }
@@ -152,15 +169,23 @@ export const AddExpenseScreen = (props) => {
           return;
 
         }else{
-        setNewExpense({...newExpense, dueDateLabel: `the ${addDateSuffix(day)} of the month`})           
-         setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day})
+            setNewExpense({...newExpense, dueDate: modifiers.selected ? newExpense.dueDate : day, dueDateLabel: `the ${addDateSuffix(day)} of the month`});           
+            setAddScreen({...addScreen, dueDate: true, dueDateLabel: true});
+        }
+
+        if( addScreen.title  == true &&
+            addScreen.amount  == true &&
+            addScreen.moneyIn  == true &&
+            addScreen.contribution == true)
+            {
+        setAddScreen({...addScreen, disabled: false});
         }
 
     }
 
       
     const {title, amount, dueDate, moneyIn, contribution} = newExpense;
-    const {screensComplete, disabled} = addScreen;
+    const {disabled} = addScreen;
 
     const year = new Date().getFullYear().toString();
     const endDate = new Date(year + "/12/31");
@@ -169,10 +194,12 @@ export const AddExpenseScreen = (props) => {
 
 
     const order = {type: 'ADD_EXPENSE', item: newExpense}
-    const flickityOptions ={ cellAlign: 'left', wrapAround: false, groupCells: 1,contain: true, prevNextButtons: true,pageDots: true}
-    
+    const flickityOptions ={ initialIndex: 1, cellAlign: 'left', wrapAround: false, groupCells: 1, contain: true, prevNextButtons: true,pageDots: true}
+
+
+  
+
     return (
-            
             <div>
                 <h2 className="centerText noselect">Add New Expense</h2>
                 <p className="centerText noselect">Swipe screen or click arrows below to proceed.</p>
@@ -251,7 +278,7 @@ export const AddExpenseScreen = (props) => {
                 </Flickity>                
             </div>
                 <ul>
-                    <li><button className={disabled ? "disabled":""} onClick={()=> operation(order)}>Confirm</button></li>
+                    <li><button className={disabled ? "disabled" : ""} onClick={() => disabled ? null : operation(order)}>{disabled ? 'Please complete all fields.' : 'Confirm' }</button></li>
                     <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
                 </ul>              
             </div>

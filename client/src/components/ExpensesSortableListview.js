@@ -2,8 +2,6 @@ import React, {useContext, useState, useCallback, useEffect} from 'react';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
 import GlobalContext from '../user-context' ;
-import Draggable from '../components/Draggable';
-import {inRange, range} from 'lodash'
 
 
 export const ExpensesSortableListview = (props) => {

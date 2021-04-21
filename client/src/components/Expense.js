@@ -3,7 +3,7 @@ import GlobalContext from '../user-context'
 import '../css/expenses-component.css'
 import '../css/jiggle-animation.css'
 import Flickity from 'react-flickity-component'
-import {currencyFormat, addDateSuffix} from '../operations/conversions';
+import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 
 const Expense = ( props) => {
@@ -56,7 +56,7 @@ const Expense = ( props) => {
                                 <div>
                                     <h3>{title}</h3>
                                     <p><span>{currencyFormat(amountSaved)}</span> of {currencyFormat(amount)}</p>
-                                    <p>March 5th &bull; {dueDateLabel}</p>
+                                    <p>{month[dueDate.getMonth()] + ' ' + addDateSuffix(dueDate)} &bull; {dueDateLabel}</p>
 
 
                                     <p>{fundingStatus} &bull; <span style={spanStyles}>{moneyOut}</span></p>
