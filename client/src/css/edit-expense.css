@@ -9,7 +9,6 @@
     width: 100%;
     max-width: 420px;
     min-height: 50px;
-    background-color: #fff;
     color: #313d46;
     font-family: 'Sen', sans-serif !important;
     
@@ -60,16 +59,16 @@
 }
 
 .editExpenseComponent .activitySummary .squareIcon.transfer {
-    background: url(../images/icons/exchange-alt-solid.svg); 
+    background: url(../images/exchange-alt-solid.svg); 
 
 }
 .editExpenseComponent .activitySummary .squareIcon.delete {
-    background: url(../images/icons/trash-solid.svg); 
+    background: url(../images/trash-solid.svg); 
 
 }
 
 .editExpenseComponent .activitySummary .squareIcon.edit {
-    background: url(../images/icons/edit-solid.svg); 
+    background: url(../images/edit-solid.svg); 
 
 }
 

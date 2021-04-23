@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, getDisabledDays} from './conversions';
 import Flickity from 'react-flickity-component';
@@ -132,7 +132,6 @@ export const AddExpenseScreen = (props) => {
             moneyOut: 'No Automatic Spending',
             recentTransactions: []
     })
-
     const [addScreen, setAddScreen] = useState({
 
         title: false,
@@ -194,10 +193,11 @@ export const AddExpenseScreen = (props) => {
 
 
     const order = {type: 'ADD_EXPENSE', item: newExpense}
-    const flickityOptions ={ initialIndex: 1, cellAlign: 'left', wrapAround: false, groupCells: 1, contain: true, prevNextButtons: true,pageDots: true}
+    const flickity = useRef(new Flickity());
+    console.log(flickity.current)
+    // flickity.current._select();
 
-
-  
+    const flickityOptions = { initialIndex: 0, cellAlign: 'left', wrapAround: false, groupCells: 1, contain: true, prevNextButtons: true,pageDots: true}
 
     return (
             <div>
@@ -205,7 +205,7 @@ export const AddExpenseScreen = (props) => {
                 <p className="centerText noselect">Swipe screen or click arrows below to proceed.</p>
 
             <div className="formSlider">
-                <Flickity options={flickityOptions}>
+                <Flickity flickityRef={c => flickity.current = c} options={flickityOptions}>
                     <div className="formSlide">
                         <br/><br/>
 

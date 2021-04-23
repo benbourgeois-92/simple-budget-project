@@ -172,9 +172,10 @@ transform: scale(.9);
     
 
 }
-
-
-
+.noExpensesMessage {
+    position: absolute;
+    width: 100%;
+}
 
 
 .expensesComponent .individualExpense button div p, .expensesComponent .individualExpense button div h2 {

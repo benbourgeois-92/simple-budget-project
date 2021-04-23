@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
-import GlobalContext from '../user-context'
+import GlobalContext from '../user-context';
+import { useHistory, useRouteMatch } from 'react-router-dom'
 import '../css/expenses-component.css'
 import '../css/jiggle-animation.css'
 import Flickity from 'react-flickity-component'
@@ -10,6 +11,9 @@ const Expense = ( props) => {
 
 
     const {changeModalScreen} = useContext(GlobalContext);
+    const history = useHistory();
+    const match = useRouteMatch();
+
 
     const expense = props.info;
     const sorting = props.sorting;
@@ -45,7 +49,6 @@ const Expense = ( props) => {
       ]
  
 
-
         return (
 
                 <li className="individualExpense  listElement-carousel">
@@ -67,7 +70,7 @@ const Expense = ( props) => {
 
                                 </div>								
                             </button>
-                            <button onClick={() => changeModalScreen(orders[1])} className="carousel-cell editButton">Edit</button>
+                            <button onClick={() => history.push(`/home/expenses/edit_expense/${expense.id}`)} className="carousel-cell editButton">Edit</button>
                             <button onClick={() => changeModalScreen(orders[0])} className="carousel-cell deleteButton">Delete</button>
                             
                         </Flickity> 

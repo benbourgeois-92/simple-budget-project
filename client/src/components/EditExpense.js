@@ -1,16 +1,30 @@
-import React from 'react';
+import{React, useContext} from 'react';
 import '../css/edit-expense.css';
-
+import { BrowserRouter as Router, Switch, Route, Link, useParams } from "react-router-dom";
+import GlobalContext from '../user-context';
+import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 const EditExpense = (props) => {
+
+
+    const { id } = useParams();
+    const {account} = useContext(GlobalContext);
+
+    const expense = account.expenses.find(expense => expense.id == id);
+    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
+
+    window.scrollTo(0,0);
+
+
+
 
     return (
         <div className="editExpenseComponent">
             <div className="activitySummary">
-                <h2>Emergency Fund</h2>
+                <h2>{title}</h2>
                 <p><span>$943.60</span> of $250.00</p>
                 <p>March 5th &bull; the 5th of every month</p>
-                <p><span>$2500.00/Paycheck</span> &bull; <span style="color: #ef3f3a;">No automatic spending</span></p>
+                <p><span>$2500.00/Paycheck</span> &bull; <span style={{color: "#ef3f3a;"}}>No automatic spending</span></p>
                 <div>
                     <div>
                         <ul>
@@ -24,7 +38,6 @@ const EditExpense = (props) => {
                 </div>
             </div>
             <div className="editExpenseDetails">
-            <form>
                 <section>
                     <button  type="button" className="detailsStacked">
                         <div className="icon bank">
@@ -78,65 +91,26 @@ const EditExpense = (props) => {
                 <section className="recentTransactions">
                     <h2>Recent Transactions</h2>
                     <ul>
-                        <li>
-                            <div>
-                                <p>Transaction Name</p>
-                                <p>Feb 1</p>											
-                            </div>
-                            <div>
-                                <p>$110.00</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <p>Transaction Name</p>
-                                <p>Feb 1</p>											
-                            </div>
-                            <div>
-                                <p>$110.00</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <p>Transaction Name</p>
-                                <p>Feb 1</p>											
-                            </div>
-                            <div>
-                                <p>$110.00</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <p>Transaction Name</p>
-                                <p>Feb 1</p>											
-                            </div>
-                            <div>
-                                <p>$110.00</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <p>Transaction Name Transaction Name</p>
-                                <p>Feb 1</p>											
-                            </div>
-                            <div>
-                                <p>$110.00</p>
-                            </div>
-                        </li>
+
+                        {expense.recentTransactions.map((transaction)  =>
+                            
+                                <li>
+                                    <div>
+                                        <p>{transaction.title}</p>
+                                        <p>{month[dueDate.getMonth()] + ' ' + addDateSuffix(dueDate)}</p>											
+                                    </div>
+                                    <div>
+                                        <p>{currencyFormat(transaction.amount)}</p>
+                                    </div>
+                                </li>                            
+                            
+                            
+                            ) }
                     </ul>
                 </section>
-
-            
-        </div>
-
-</div>
+            </div>
         </div>
     );
-
-
-
-
-
 
 }
 

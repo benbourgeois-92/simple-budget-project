@@ -22,6 +22,7 @@ class Dashboard extends React.Component {
                 <div>
                     <Activity />
                 </div>
+
                 
             </div>
         );

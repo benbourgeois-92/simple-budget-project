@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import '../css/expenses-component.css'
 import Expense from '../components/Expense';
-import GlobalContext from '../user-context' ;
+import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 const Expenses = () => {
@@ -25,7 +25,6 @@ const Expenses = () => {
         totalBudgeted += parseFloat(account.expenses[i].amount);
     }
     
-
     const orders = [
         {screen: "ADD_EXPENSE", item: null},
         {screen: "SORT_EXPENSE_LIST", item: null},
@@ -56,10 +55,9 @@ const Expenses = () => {
             </div>
 
             <div>
+                { account.expenses.length > 0 ? null : <p className="centerText bold noExpensesMessage">no expenses here! <br/><br/> use the '+' above to add an expense. </p>}
 
 
-
-    
 
 
                  <ul className="expensesListview">
@@ -67,7 +65,6 @@ const Expenses = () => {
                     {account.expenses.map((expense) => 
                         <Expense key={expense.id} sorting={sorting} info={expense} />
                     )} 
-
 
                 </ul>                     
 
