@@ -1,6 +1,8 @@
 import{React, useContext} from 'react';
 import '../css/edit-expense.css';
-import { BrowserRouter as Router, Switch, Route, Link, useParams } from "react-router-dom";
+import '../css/detail-buttons.css';
+
+import { BrowserRouter as Router, useParams } from "react-router-dom";
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
@@ -8,15 +10,20 @@ const EditExpense = (props) => {
 
 
     const { id } = useParams();
-    const {account} = useContext(GlobalContext);
+    const {account, changeModalScreen} = useContext(GlobalContext);
 
     const expense = account.expenses.find(expense => expense.id == id);
     const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
 
     window.scrollTo(0,0);
 
-
-
+    const orders = [
+        {screen: "UPDATE_EXPENSE_AMOUNT", item: null},
+        {screen: "UPDATE_EXPENSE_DUEDATE", item: null},
+        {screen: "UPDATE_EXPENSE_MONEYIN", item: null},
+        {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
+        {screen: "UPDATE_EXPENSE_MONEYOUT", item: null}
+    ]
 
     return (
         <div className="editExpenseComponent">
@@ -39,7 +46,7 @@ const EditExpense = (props) => {
             </div>
             <div className="editExpenseDetails">
                 <section>
-                    <button  type="button" className="detailsStacked">
+                    <button onClick={() => changeModalScreen(orders[0])} type="button" className="detailsStacked">
                         <div className="icon bank">
 
                         </div>
@@ -48,7 +55,7 @@ const EditExpense = (props) => {
                             <p>$16.00</p>
                         </div>
                     </button>
-                    <button  type="button" className="detailsStacked">
+                    <button  onClick={() => changeModalScreen(orders[1])} type="button" className="detailsStacked">
                         <div className="icon calendar">
 
                         </div>
@@ -57,7 +64,7 @@ const EditExpense = (props) => {
                             <p>the 5th of every month</p>
                         </div>
                     </button>
-                    <button  type="button" className="detailsStacked">
+                    <button  disabled onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked disabled">
                         <div className="icon arrowRight">
 
                         </div>
@@ -68,7 +75,7 @@ const EditExpense = (props) => {
                     </button>
 
                     
-                    <button  type="button" className="detailsStacked">
+                    <button  onClick={() => changeModalScreen(orders[3])} type="button" className="detailsStacked">
                         <div className="icon target">
 
                         </div>
@@ -78,7 +85,7 @@ const EditExpense = (props) => {
                         </div>
                     </button>
 
-                    <button  type="button" className="detailsStacked">
+                    <button  onClick={() => changeModalScreen(orders[4])} type="button" className="detailsStacked">
                         <div className="icon arrowLeft">
 
                         </div>
@@ -88,6 +95,8 @@ const EditExpense = (props) => {
                         </div>
                     </button>							
                 </section>
+
+            </div>
                 <section className="recentTransactions">
                     <h2>Recent Transactions</h2>
                     <ul>
@@ -107,8 +116,7 @@ const EditExpense = (props) => {
                             
                             ) }
                     </ul>
-                </section>
-            </div>
+                </section>            
         </div>
     );
 

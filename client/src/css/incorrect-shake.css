@@ -1,8 +1,15 @@
-button.disabled:active, button.disabled:focus {
+/* button {
 
     animation-name: shake;
     animation-iteration-count: 3;
     animation-duration: .33s;
+
+} */
+
+button.disabled:active {
+    animation-name: shake;
+    animation-iteration-count: 3;
+    animation-duration: .16s;
 
 }
 

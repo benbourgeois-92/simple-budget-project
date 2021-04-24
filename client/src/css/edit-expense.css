@@ -7,7 +7,7 @@
 
 
     width: 100%;
-    max-width: 420px;
+    max-width: 730px;
     min-height: 50px;
     color: #313d46;
     font-family: 'Sen', sans-serif !important;
@@ -198,7 +198,12 @@ p.noTransactions { width: 100%; text-align: center; position: absolute;  }
 }
 
 /*Edit Transaction Window*/
+.editExpenseComponent .editExpenseDetails {
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    overflow: hidden;
 
+}
 .editExpenseComponent .editExpenseDetails > h2, .editExpenseComponent .editExpenseDetails > p {
     text-align: center;
 } 
@@ -250,49 +255,8 @@ p.noTransactions { width: 100%; text-align: center; position: absolute;  }
 
 /*END EDIT TRANSACTION DETAILS*/
 
-button.detailsStacked {
-    display: flex;
-    background-color: #fff;
-    color:#313d46;
-    width: 100%;
-    padding: 15px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid #e0e0e0;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    
-}
 
-button.detailsStacked div.icon {
-    width: 50px;
-    height: 50px;
-    display: block;
-    border: 1px solid transparent;
-    background-size: 40px 40px !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    text-indent: -9999px;
-    margin-right: 15px;
 
-}
-button.detailsStacked div p {
-    margin: 0;
-    font-family: 'Sen', sans-serif !important;
-    text-align: left;
-    font-size: 1em;
-}
-button.detailsStacked div p:first-child {
-    font-weight: bold;
-}
-button.detailsStacked div:last-child {
-    display: flex;
-    flex-direction: column;
-    padding-top: 9px;
-    padding-bottom: 9px;
-   
-}
 .editExpenseComponent .recentTransactions ul li {
     display: flex;
     justify-content: space-between;
@@ -320,28 +284,4 @@ button.detailsStacked div:last-child {
     text-align: center;
 
 }
-button.detailsStacked:hover {
-    cursor: pointer;
-}
-button.detailsStacked div.icon.bank {
-    background: url(../images/university-solid.svg); 
-
-}
-button.detailsStacked div.icon.calendar {
-    background: url(../images/calendar-alt-regular.svg); 
-
-}
-button.detailsStacked div.icon.target {
-    background: url(../images/bullseye-solid.svg); 
-
-}
-button.detailsStacked div.icon.arrowRight {
-    background: url(../images/arrow-right-solid.svg); 
-
-}
-button.detailsStacked div.icon.arrowLeft {
-    background: url(../images/arrow-left-solid.svg); 
-
-}
-
 
