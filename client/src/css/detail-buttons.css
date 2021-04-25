@@ -47,7 +47,8 @@ button.detailsStacked.disabled {
     opacity: .6;
 
 }
-button.detailsStacked:not(.disabled):hover {
+
+button.detailsStacked:not(.disabled):hover, button.detailsStacked:not(.disabled):focus{
     cursor: pointer;
     background-color: #f1f3f4;
     font-weight: bold;

@@ -1,4 +1,6 @@
 import{React, useContext} from 'react';
+import { useHistory } from 'react-router-dom'
+
 import '../css/edit-expense.css';
 import '../css/detail-buttons.css';
 
@@ -8,11 +10,17 @@ import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 const EditExpense = (props) => {
 
-
+    const history = useHistory();
     const { id } = useParams();
     const {account, changeModalScreen} = useContext(GlobalContext);
 
     const expense = account.expenses.find(expense => expense.id == id);
+
+    if(!expense){
+        history.push(`/home/expenses`);
+        return null;
+    }
+
     const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
 
     window.scrollTo(0,0);
@@ -22,7 +30,9 @@ const EditExpense = (props) => {
         {screen: "UPDATE_EXPENSE_DUEDATE", item: null},
         {screen: "UPDATE_EXPENSE_MONEYIN", item: null},
         {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
-        {screen: "UPDATE_EXPENSE_MONEYOUT", item: null}
+        {screen: "UPDATE_EXPENSE_MONEYOUT", item: null},        
+        {screen: "DELETE_EXPENSE", item: expense}
+
     ]
 
     return (
@@ -35,8 +45,8 @@ const EditExpense = (props) => {
                 <div>
                     <div>
                         <ul>
-                            <li><button className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
-                            <li><button className="squareIcon delete">Delete Expense</button></li>
+                            <li><button  className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
+                            <li><button onClick={() => changeModalScreen(orders[5])} className="squareIcon delete">Delete Expense</button></li>
                             <li><button className="squareIcon transfer">Transfer Funds to Another Expense</button></li>
 
                         </ul>
