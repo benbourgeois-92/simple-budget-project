@@ -1,10 +1,11 @@
 import{React, useContext} from 'react';
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import '../css/edit-expense.css';
 import '../css/detail-buttons.css';
 
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import FundingStatus from './FundingStatus';
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
@@ -16,14 +17,19 @@ const EditExpense = (props) => {
 
     const expense = account.expenses.find(expense => expense.id == id);
 
+    window.scrollTo(0,0);
+
     if(!expense){
         history.push(`/home/expenses`);
         return null;
     }
 
-    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
+    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn, note, contribution, recentTransactions} = expense;
 
-    window.scrollTo(0,0);
+    const convertedAmount = currencyFormat(amount);
+    const convertedAmountSaved = currencyFormat(amountSaved);
+    const spanStyles = {color: '#ef3f3a'}
+
 
     const orders = [
         {screen: "UPDATE_EXPENSE_AMOUNT", item: null},
@@ -32,19 +38,24 @@ const EditExpense = (props) => {
         {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
         {screen: "UPDATE_EXPENSE_MONEYOUT", item: null},        
         {screen: "DELETE_EXPENSE", item: expense}
-
     ]
 
     return (
         <div className="editExpenseComponent">
             <div className="activitySummary">
                 <h2>{title}</h2>
-                <p><span>$943.60</span> of $250.00</p>
-                <p>March 5th &bull; the 5th of every month</p>
-                <p><span>$2500.00/Paycheck</span> &bull; <span style={{color: "#ef3f3a;"}}>No automatic spending</span></p>
+                {note ? <p><span>{note}</span></p>:null}
+                <p><span>{convertedAmountSaved}</span> of {convertedAmount}</p>
+
+                <p>{month[dueDate.getMonth()] + ' ' + addDateSuffix(dueDate)} &bull; {dueDateLabel}</p>
+
+                <FundingStatus moneyIn={moneyIn} moneyOut={moneyOut} spanStyles={spanStyles} amount={amount}/>
+
                 <div>
                     <div>
                         <ul>
+
+                            <li><Link to="home/expenses" className="squareIcon return openPopupMenu">Back to Expenses</Link></li>
                             <li><button  className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
                             <li><button onClick={() => changeModalScreen(orders[5])} className="squareIcon delete">Delete Expense</button></li>
                             <li><button className="squareIcon transfer">Transfer Funds to Another Expense</button></li>
@@ -62,7 +73,7 @@ const EditExpense = (props) => {
                         </div>
                         <div>
                             <p>Amount</p> 
-                            <p>$16.00</p>
+                            <p>{convertedAmount}</p>
                         </div>
                     </button>
                     <button  onClick={() => changeModalScreen(orders[1])} type="button" className="detailsStacked">
@@ -71,19 +82,28 @@ const EditExpense = (props) => {
                         </div>
                         <div>
                             <p>Due Date</p> 
-                            <p>the 5th of every month</p>
+                            <p>{dueDateLabel}</p>
                         </div>
                     </button>
-                    <button  disabled onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked disabled">
+
+                    {/* <button  disabled onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked disabled">
                         <div className="icon arrowRight">
 
                         </div>
                         <div>
                             <p>Money In</p> 
-                            <p>Payday</p>
+                            <p>{moneyIn}</p>
+                        </div>
+                    </button> */}
+                    <button  onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked">
+                        <div className="icon arrowRight">
+
+                        </div>
+                        <div>
+                            <p>Money In</p> 
+                            <p>{moneyIn}</p>
                         </div>
                     </button>
-
                     
                     <button  onClick={() => changeModalScreen(orders[3])} type="button" className="detailsStacked">
                         <div className="icon target">
@@ -91,7 +111,7 @@ const EditExpense = (props) => {
                         </div>
                         <div>
                             <p>Contribution Option</p> 
-                            <p>Set aside target amount</p>
+                            <p>{contribution}</p>
                         </div>
                     </button>
 
@@ -101,13 +121,16 @@ const EditExpense = (props) => {
                         </div>
                         <div>
                             <p>Money Out</p> 
-                            <p>No automatic spending</p>
+                            <p>{moneyOut}</p>
                         </div>
                     </button>							
                 </section>
 
             </div>
-                <section className="recentTransactions">
+
+            {recentTransactions.length > 0 ?
+
+                (<section className="recentTransactions">
                     <h2>Recent Transactions</h2>
                     <ul>
 
@@ -126,7 +149,8 @@ const EditExpense = (props) => {
                             
                             ) }
                     </ul>
-                </section>            
+                </section> ) : null } 
+
         </div>
     );
 

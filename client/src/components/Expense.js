@@ -4,6 +4,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom'
 import '../css/expenses-component.css'
 import '../css/jiggle-animation.css'
 import Flickity from 'react-flickity-component'
+import FundingStatus from './FundingStatus'
 import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
 
 
@@ -20,13 +21,7 @@ const Expense = ( props) => {
     const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn } = expense;
 
     const spanStyles = {color: '#ef3f3a'}
-    let fundingStatus = '';
     
-    if(moneyIn === 'On Payday'){
-        fundingStatus = (<span>{currencyFormat(amount)}/Paycheck</span>);
-    }else {
-        fundingStatus = (<span style={spanStyles}>{moneyIn}</span>);
-    }
 
     const width = (amountSaved/amount)*100
     const statusBarWidth = width.toString() + '%';
@@ -61,8 +56,8 @@ const Expense = ( props) => {
                                     <p><span>{currencyFormat(amountSaved)}</span> of {currencyFormat(amount)}</p>
                                     <p>{month[dueDate.getMonth()] + ' ' + addDateSuffix(dueDate)} &bull; {dueDateLabel}</p>
 
-
-                                    <p>{fundingStatus} &bull; <span style={spanStyles}>{moneyOut}</span></p>
+                                    <FundingStatus moneyIn={moneyIn} moneyOut={moneyOut} spanStyles={spanStyles} amount={amount}/>
+                                    {/* <p>{fundingStatus} &bull; <span style={spanStyles}>{moneyOut}</span></p> */}
 
                                 </div>
                                 <div>

@@ -24,8 +24,9 @@ export const app = {
                 balance: 2033.33,
                 payday: new Date(),
                 expenses: expenseList,
-                expenseOrder: [],
-                goals: [],                
+                expenseOrder: 'Alphabetically',
+                goals: [],
+                goalsOrder: 'Alphabetically',
                 transactions: transactions
                 
         }         
@@ -38,13 +39,21 @@ export const GlobalProvider = ({children}) => {
         
         const [state, dispatch] = useReducer(AppReducer, app);
 
-        function togglePopup(open) {
+        function togglePopup(open, reset) {
 
-                if(open){dispatch({type: 'TOGGLE_POPUP', payload: false})
+                if(open){
+                        dispatch({type: 'TOGGLE_POPUP', payload: false})
+                }else{
+                        dispatch({type: 'TOGGLE_POPUP', payload: true})
+                }
 
-                }else{dispatch({type: 'TOGGLE_POPUP', payload: true})}
+                if(reset){
+                        dispatch({type: 'CHANGE_MODAL_SCREEN', payload: "DEFAULT"})
+                        dispatch({type: 'CHANGE_MODAL_SCREEN', payload: reset.screen})
+                }
 
         }
+
 
         function triggerNotification(notify){
                 // dispatch({type: 'TRIGGER_NOTIFICATION', payload: notify})
@@ -61,6 +70,7 @@ export const GlobalProvider = ({children}) => {
 
                 console.log("operating on this object: ")
                 console.log(order.item)
+                
 
                 switch(order.type){
                         case 'DELETE_ITEM':
@@ -77,6 +87,10 @@ export const GlobalProvider = ({children}) => {
                                 break;
                         case 'UPDATE_PAYDAY':
                                 dispatch({type: 'UPDATE_PAYDAY', payload: order})
+                                dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
+                        case 'UPDATE_EXPENSE_SORT':
+                                dispatch({type: 'UPDATE_EXPENSE_SORT', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
                         default:

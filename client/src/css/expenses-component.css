@@ -7,7 +7,7 @@
 
 
     width: 100%;
-    max-width: 100%;
+    max-width: 812px;
     min-height: 812px;
     background-color: #fafafa;
     color: #313d46;
@@ -21,32 +21,12 @@
     padding: 30px 30px 15px 15px;
 }
 .expensesComponent .expensesSummary button.squareIcon {
-    width: 50px;
-    height: 50px;
-    display: block;
-    border: 1px solid #e0e0e0;
+
     background-size: 25px 25px !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    border-radius: 10px;
-    transition: all 0.5s ease-in-out;
-    background-color:#fff;
 
 }
 
 
-.expensesComponent .expensesSummary button.squareIcon:hover, .expensesComponent .expensesSummary button.squareIcon:focus {
-    cursor: pointer;
-    transform: scale(.9);
-    background-color: #fff;
-    color: #fff;
-    border: 2px solid #e0e0e0;
-
-}
-
-.expensesComponent .expensesSummary button.squareIcon:active {
-transform: scale(.9);
-}
 
 
 .expensesComponent .expensesSummary ul {
@@ -56,6 +36,8 @@ transform: scale(.9);
     justify-content: center;
     padding: 0;
     margin-top: 30px;
+    margin-bottom: 0px;
+
 }
 
 .expensesComponent .expensesSummary ul li:not(:last-of-type){
@@ -112,8 +94,14 @@ transform: scale(.9);
     margin-top: 0px;
     min-height: 439px;
     margin-bottom: 0px;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    overflow: hidden;
+    box-sizing: border-box;
 
 }
+
+
 
 .expensesComponent .expensesListview > div:first-child {
     position: absolute;

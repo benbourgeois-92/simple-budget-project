@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect, useRef} from 'react';
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, getDisabledDays} from './conversions';
 import Flickity from 'react-flickity-component';
+import OptionButtonList from '../components/OptionButtonList';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
@@ -193,11 +194,12 @@ export const AddExpenseScreen = (props) => {
 
 
     const order = {type: 'ADD_EXPENSE', item: newExpense}
-    const flickity = useRef(new Flickity());
-    console.log(flickity.current)
-    // flickity.current._select();
+
 
     const flickityOptions = { initialIndex: 0, cellAlign: 'left', wrapAround: false, groupCells: 1, contain: true, prevNextButtons: true,pageDots: true}
+    const fundingOptions = ['No Automatic Funding', 'On Payday'];
+    const contributionOptions = ['Reach Target Balance', 'Set Aside Target Amount'];
+    const lists = ['fundingOptions', 'contributionOptions'];
 
     return (
             <div>
@@ -205,7 +207,7 @@ export const AddExpenseScreen = (props) => {
                 <p className="centerText noselect">Swipe screen or click arrows below to proceed.</p>
 
             <div className="formSlider">
-                <Flickity flickityRef={c => flickity.current = c} options={flickityOptions}>
+                <Flickity  options={flickityOptions}>
                     <div className="formSlide">
                         <br/><br/>
 
@@ -234,8 +236,11 @@ export const AddExpenseScreen = (props) => {
                         <p className="centerText bold">How do you want money to be moved to this expense?</p>
                         <div className="selectOption">
                             <ul onChange={e => onChange(e)}>
-                                <li><label className="radioButton" htmlFor="No Automatic Funding" >No Automatic Funding<input type="radio" id="No Automatic Funding" name="moneyIn"  value="No Automatic Funding" defaultChecked/></label></li>
-                                <li><label className="radioButton" htmlFor="On Payday" >On Payday<input type="radio" id="On Payday" name="moneyIn"  value="On Payday"/></label></li>
+
+                                <OptionButtonList options={fundingOptions} primaryOption={fundingOptions[0]} range="moneyIn" />
+
+                                {/* <li><label className="radioButton" htmlFor="No Automatic Funding" >No Automatic Funding<input type="radio" id="No Automatic Funding" name="moneyIn"  value="No Automatic Funding" defaultChecked/></label></li>
+                                <li><label className="radioButton" htmlFor="On Payday" >On Payday<input type="radio" id="On Payday" name="moneyIn"  value="On Payday"/></label></li> */}
 
                             </ul>
                         </div>
@@ -246,8 +251,11 @@ export const AddExpenseScreen = (props) => {
                         <p className="centerText bold">Stop saving once you reach {currencyFormat(amount)} per month, or set aside the same amount per month regardless?</p>
                         <div className="selectOption">
                             <ul onChange={e => onChange(e)}>
-                                <li><label className="radioButton" htmlFor="Reach Target Balance" >Reach Target Balance<input type="radio" id="Reach Target Balance" name="contribution"  value="Reach Target Balance" defaultChecked/></label></li>
-                                <li><label className="radioButton" htmlFor="Set Aside Target Amount" >Set Aside Target Amount<input type="radio" id="Set Aside Target Amount" name="contribution"  value="Set Aside Target Amount"/></label></li>
+
+                                <OptionButtonList options={contributionOptions} primaryOption={contributionOptions[0]} range="contribution" />
+
+                                {/* <li><label className="radioButton" htmlFor="Reach Target Balance" >Reach Target Balance<input type="radio" id="Reach Target Balance" name="contribution"  value="Reach Target Balance" defaultChecked/></label></li>
+                                <li><label className="radioButton" htmlFor="Set Aside Target Amount" >Set Aside Target Amount<input type="radio" id="Set Aside Target Amount" name="contribution"  value="Set Aside Target Amount"/></label></li> */}
 
                             </ul>
                         </div>
@@ -279,7 +287,7 @@ export const AddExpenseScreen = (props) => {
             </div>
                 <ul>
                     <li><button className={disabled ? "disabled" : ""} onClick={() => disabled ? null : operation(order)}>{disabled ? 'Please complete all fields.' : 'Confirm' }</button></li>
-                    <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
+                    <li><button onClick={()=> togglePopup(screen.popupOpen, {screen: screen.modal_screen})} className="closeMenu">Cancel</button></li>                    
                 </ul>              
             </div>
     )
@@ -430,20 +438,55 @@ export const EditExpenseScreen = (props) => {
 
 }
 
+export const SelectSortScreen = (props) => {
+
+    const {togglePopup, screen, operation, account} = useContext(GlobalContext);
+    const [sortType, setSortType] = useState(null)
+
+    const onChange = (e) => {
+        setSortType(e.target.value);
+    }
+
+    const order = {type: 'UPDATE_EXPENSE_SORT', item: sortType};
+    const options = ['Alphabetically', 'By Amount', 'By Saved Amount'];
+
+    return (
+            <div>
+                <div>                        
+                        <h2 className="centerText bold">How do you want your expenses ordered?</h2>
+                        <p className="centerText bold">Select how you want your expenses displayed.</p>
+                        <div className="selectOption">
+                            <ul onChange={e => onChange(e)}>
+
+                                <OptionButtonList options={options} primaryOption={account.expenseOrder} range="select_sort"/>
+                         
+                            </ul>
+                        </div>
+                </div>
+
+                <ul className="selectOptions">
+                    <li><button onClick={()=> operation(order)}>Confirm</button></li>
+                    <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
+                </ul>             
+            </div>
+    )
+
+}
+
 export const DefaultScreen = (props) => {
 
     const {togglePopup, screen} = useContext(GlobalContext);
 
     return (
-            <div>
-                <div>
+            <div className="setHeight">
+                {/* <div>
                     <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
                 </div>
                 <div>
                     <label htmlFor="expenseName">Expense Name:</label>
                     <input type="text" id="expenseName" placeholder="Enter Expense Name"/>							
-                </div>
+                </div> */}
 
             <ul className="selectOptions">
                 <li><button>Confirm</button></li>

@@ -47,6 +47,10 @@ div.content.greyBackground {
 	clip: rect(1px,1px,1px,1px);
 }
 
+.setHeight {
+	height: 200px;
+}
+
 .colorWhite {
 	color: #fff;
 }

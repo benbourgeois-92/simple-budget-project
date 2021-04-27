@@ -1,6 +1,5 @@
 import BalanceSummary from '../components/BalanceSummary.js';
 import Activity from '../components/Activity.js'
-import ActivityCopy from '../components/ActivityCopy.js'
 
 import '../css/main.css';
 import React from 'react';
