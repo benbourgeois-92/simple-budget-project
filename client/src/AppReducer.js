@@ -85,6 +85,27 @@ export const AppReducer = (state, action) => {
                     transactions: state.account.transactions
             }  
         }
+        case 'UPDATE_EXPENSE':
+
+            var currentExpense = state.account.expenses.find((expense) => expense.id == action.payload.item.id);
+            var updatedProperties = action.payload.item;
+            
+            var updatedExpense = {...currentExpense, ...updatedProperties}
+            let newExpenses = state.account.expenses.filter((expense) => expense.id !== action.payload.item.id)
+            newExpenses.push(updatedExpense);
+
+            return {
+                ...state,
+                account: {
+                    balance: state.account.balance,
+                    payday: state.account.payday,
+                    expenses: newExpenses,
+                    expenseOrder: state.account.expenseOrder,
+                    goals: state.account.goals,                
+                    transactions: state.account.transactions
+                }
+        }
+
         default:
             return state;
     }

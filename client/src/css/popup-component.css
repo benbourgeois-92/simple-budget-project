@@ -45,7 +45,8 @@
     position: fixed; 
     z-index: 2;
     width: 100%;
-    max-width: 84%;
+    max-width: 420px;
+    box-sizing: border-box;
     bottom: -9999px;
     overflow-x: hidden; 
     overflow-y: hidden;
@@ -63,7 +64,7 @@
 
 }
 
-.popupComponent .popup div input, .popupComponent .popup div label {
+.popupComponent .popup div input, .popupComponent .popup div label, .popupComponent .popup div textarea{
     display: block;
     text-align: center;
     width: 100%;
@@ -73,7 +74,10 @@
     font-size: 1em;
 
 }
-.popupComponent .popup div input::placeholder {
+.popupComponent .popup div textarea {
+    font-family: 'Sen', sans-serif !important;
+}
+.popupComponent .popup div input::placeholder,.popupComponent .popup div textarea::placeholder {
     font-size: 1em;
 }
 .popupComponent .popup ul {

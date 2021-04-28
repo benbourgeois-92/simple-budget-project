@@ -44,8 +44,6 @@ const App = () => {
                 <Route path='/home'>
                     <Navbar />
                     <Pages />
-
-                  <Popup />                    
                 </Route>
 
             </Switch>

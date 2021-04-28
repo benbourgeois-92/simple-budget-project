@@ -8,8 +8,8 @@ export const OptionButtonList = (props) => {
 
     return (
         <>
-        {options.map((option) => 
-            <li>
+        {options.map((option, i) => 
+            <li key={i}>
                  <label className="radioButton" htmlFor={option}>
                      {option}
                      {

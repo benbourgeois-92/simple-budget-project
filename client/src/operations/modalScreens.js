@@ -3,11 +3,14 @@ import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, getDisabledDays} from './conversions';
 import Flickity from 'react-flickity-component';
 import OptionButtonList from '../components/OptionButtonList';
+import ConfirmCancelButtons from '../components/ConfirmCancelButtons';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
 import '../css/form-slide.css';
 import '../css/incorrect-shake.css';
+import { useParams } from 'react-router';
+import { STATES } from 'mongoose';
 
 export const DeleteExpenseScreen = (props) => {
     
@@ -116,7 +119,6 @@ export const UpdatePaydayScreen = (props) => {
 
     )
 }
-
 export const AddExpenseScreen = (props) => {
 
     const expenseId = Math.random().toString().substr(2, 5);
@@ -199,7 +201,6 @@ export const AddExpenseScreen = (props) => {
     const flickityOptions = { initialIndex: 0, cellAlign: 'left', wrapAround: false, groupCells: 1, contain: true, prevNextButtons: true,pageDots: true}
     const fundingOptions = ['No Automatic Funding', 'On Payday'];
     const contributionOptions = ['Reach Target Balance', 'Set Aside Target Amount'];
-    const lists = ['fundingOptions', 'contributionOptions'];
 
     return (
             <div>
@@ -239,9 +240,7 @@ export const AddExpenseScreen = (props) => {
 
                                 <OptionButtonList options={fundingOptions} primaryOption={fundingOptions[0]} range="moneyIn" />
 
-                                {/* <li><label className="radioButton" htmlFor="No Automatic Funding" >No Automatic Funding<input type="radio" id="No Automatic Funding" name="moneyIn"  value="No Automatic Funding" defaultChecked/></label></li>
-                                <li><label className="radioButton" htmlFor="On Payday" >On Payday<input type="radio" id="On Payday" name="moneyIn"  value="On Payday"/></label></li> */}
-
+                
                             </ul>
                         </div>
                     </div>
@@ -253,9 +252,6 @@ export const AddExpenseScreen = (props) => {
                             <ul onChange={e => onChange(e)}>
 
                                 <OptionButtonList options={contributionOptions} primaryOption={contributionOptions[0]} range="contribution" />
-
-                                {/* <li><label className="radioButton" htmlFor="Reach Target Balance" >Reach Target Balance<input type="radio" id="Reach Target Balance" name="contribution"  value="Reach Target Balance" defaultChecked/></label></li>
-                                <li><label className="radioButton" htmlFor="Set Aside Target Amount" >Set Aside Target Amount<input type="radio" id="Set Aside Target Amount" name="contribution"  value="Set Aside Target Amount"/></label></li> */}
 
                             </ul>
                         </div>
@@ -468,6 +464,54 @@ export const SelectSortScreen = (props) => {
                     <li><button onClick={()=> operation(order)}>Confirm</button></li>
                     <li><button onClick={()=> togglePopup(screen.popupOpen)} className="closeMenu">Cancel</button></li>                    
                 </ul>             
+            </div>
+    )
+
+}
+
+export const EditTitleAndNote = (props) => {
+
+    const {id} = useParams();
+    const [noteAndTitle, setNoteAndTitle] = useState({id: id, title: '', note: ''})
+    let disabled = true;
+
+    const onChange = (e) => {
+        setNoteAndTitle({...noteAndTitle, [e.target.id]: e.target.value});
+    }
+    console.log(noteAndTitle)
+
+    if(noteAndTitle.title == '' && noteAndTitle.note == ''){
+        disabled = true;
+    }else{
+        disabled = false;
+    }
+
+
+
+    const order = {type: 'UPDATE_EXPENSE', item: noteAndTitle};
+
+    return (
+            <div>
+                <div>                        
+                    <h2 className="centerText bold">Edit Expense Title</h2>
+                    <p className="centerText">Adding a note is optional.</p>
+                    
+                    <div >
+                        <br/>
+
+                        <label htmlFor="title">Title:</label>
+                        <input onChange={e => onChange(e)} name="title" type="text" id="title" placeholder="enter your title here"/>							
+                        
+                        <label htmlFor="note">Note:</label>
+                        <textarea onChange={e => onChange(e)} rows="2" name="title" type="text" id="note" placeholder="enter your note here"/>							
+                        <br/>
+                    </div>
+
+                   
+                </div>
+
+                <ConfirmCancelButtons order={order} disabled={disabled} text="" />
+
             </div>
     )
 

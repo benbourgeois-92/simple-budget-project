@@ -37,7 +37,8 @@ const EditExpense = (props) => {
         {screen: "UPDATE_EXPENSE_MONEYIN", item: null},
         {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
         {screen: "UPDATE_EXPENSE_MONEYOUT", item: null},        
-        {screen: "DELETE_EXPENSE", item: expense}
+        {screen: "DELETE_EXPENSE", item: expense},
+        {screen: "EDIT_TITLE_AND_NOTE", item: null}
     ]
 
     return (
@@ -56,7 +57,7 @@ const EditExpense = (props) => {
                         <ul>
 
                             <li><Link to="home/expenses" className="squareIcon return openPopupMenu">Back to Expenses</Link></li>
-                            <li><button  className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
+                            <li><button onClick={() => changeModalScreen(orders[6])}  className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
                             <li><button onClick={() => changeModalScreen(orders[5])} className="squareIcon delete">Delete Expense</button></li>
                             <li><button className="squareIcon transfer">Transfer Funds to Another Expense</button></li>
 
