@@ -52,6 +52,7 @@ const Popup = () => {
 			ModalScreen = <EditTitleAndNote/>
 			break;
 			
+			
 		case 'DEFAULT':
 			ModalScreen = <DefaultScreen/>
 			break;

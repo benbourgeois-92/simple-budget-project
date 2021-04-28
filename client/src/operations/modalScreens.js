@@ -517,6 +517,62 @@ export const EditTitleAndNote = (props) => {
 
 }
 
+export const UpdateExpense = (props) => {
+
+    const {id} = useParams();
+    const [propertiesToUpdate, setPropertiesToUpdate] = useState({id: id, title: '', note: ''})
+    let disabled = true;
+
+    const onChange = (e) => {
+        setPropertiesToUpdate({...propertiesToUpdate, [e.target.id]: e.target.value});
+    }
+
+    // for (const property in propertiesToUpdate) {
+
+    //     object[propertry] == null ? disabled=true : null;
+
+    //     console.log(`${property}: ${object[property]}`);
+        
+
+    //   }
+
+    if(noteAndTitle.title == '' && noteAndTitle.note == ''){
+        disabled = true;
+    }else{
+        disabled = false;
+    }
+
+    const order = {type: 'UPDATE_EXPENSE', item: propertiesToUpdate};
+
+    return (
+            <div>
+                <div>                        
+                    <h2 className="centerText bold">Edit Expense Title</h2>
+                    <p className="centerText">Adding a note is optional.</p>
+                    
+                    <div >
+                        <br/>
+
+                        <label htmlFor="title">Title:</label>
+                        <input onChange={e => onChange(e)} name="title" type="text" id="title" placeholder="enter your title here"/>							
+                        
+                        <label htmlFor="note">Note:</label>
+                        <textarea onChange={e => onChange(e)} rows="2" name="title" type="text" id="note" placeholder="enter your note here"/>							
+                        <br/>
+                    </div>
+
+                   
+                </div>
+
+                <ConfirmCancelButtons order={order} disabled={disabled} text="" />
+
+            </div>
+    )
+
+}
+
+
+
 export const DefaultScreen = (props) => {
 
     const {togglePopup, screen} = useContext(GlobalContext);

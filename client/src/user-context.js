@@ -42,6 +42,7 @@ export const GlobalProvider = ({children}) => {
         function togglePopup(open, reset) {
 
                 if(open){
+
                         dispatch({type: 'TOGGLE_POPUP', payload: false})
                 }else{
                         dispatch({type: 'TOGGLE_POPUP', payload: true})
@@ -49,7 +50,7 @@ export const GlobalProvider = ({children}) => {
 
                 if(reset){
                         dispatch({type: 'CHANGE_MODAL_SCREEN', payload: "DEFAULT"})
-                        dispatch({type: 'CHANGE_MODAL_SCREEN', payload: reset.screen})
+                        dispatch({type: 'CHANGE_MODAL_SCREEN', payload: reset})
                 }
 
         }
@@ -91,6 +92,11 @@ export const GlobalProvider = ({children}) => {
                                 break;
                         case 'UPDATE_EXPENSE_SORT':
                                 dispatch({type: 'UPDATE_EXPENSE_SORT', payload: order})
+                                dispatch({type: 'TOGGLE_POPUP', payload: false})
+                                break;
+                        case 'UPDATE_EXPENSE_TITLE':
+                                dispatch({type: 'UPDATE_EXPENSE_TITLE', payload: order})
+                                dispatch({type: 'UPDATE_EXPENSE_NOTE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
                         default:
