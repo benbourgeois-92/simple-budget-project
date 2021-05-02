@@ -1,7 +1,14 @@
 import React, {useContext} from 'react';
 import GlobalContext from '.././user-context';
 import '../css/popup-component.css';
-import {UpdatePaydayScreen, AddExpenseScreen, DeleteExpenseScreen, DefaultScreen, UpdateTransactionScreen, EditExpenseScreen, SelectSortScreen, EditTitleAndNote} from '../operations/modalScreens';
+import {UpdatePaydayScreen, 
+		AddExpenseScreen, 
+		DeleteExpenseScreen, 
+		DefaultScreen, 
+		UpdateTransactionScreen, 
+		SelectSortScreen, 
+		EditTitleAndNote, 
+		UpdateExpense} from '../operations/modalScreens';
 
 const Popup = () => {
 
@@ -23,36 +30,18 @@ const Popup = () => {
 		case 'ADD_EXPENSE':
 			ModalScreen = <AddExpenseScreen/>
 			break;
-		case 'UPDATE_EXPENSE':
-			ModalScreen = <EditExpenseScreen/>
-			break;
 		case 'UPDATE_PAYDAY':
 			ModalScreen = <UpdatePaydayScreen/>
 			break;
 		case 'SELECT_SORT':
 			ModalScreen = <SelectSortScreen/>
 			break;
-
-		case 'UPDATE_EXPENSE_AMOUNT':
-			ModalScreen = <UpdatePaydayScreen/>
-			break;
-		case 'UPDATE_EXPENSE_DUEDATE':
-			ModalScreen = <UpdatePaydayScreen/>
-			break;
-		case 'UPDATE_EXPENSE_MONEYIN':
-			ModalScreen = <UpdatePaydayScreen/>
-			break;
-		case 'UPDATE_EXPENSE_CONTRIBUTION':
-			ModalScreen = <UpdatePaydayScreen/>
-			break;
-		case 'UPDATE_EXPENSE_MONEYOUT':
-			ModalScreen = <UpdatePaydayScreen/>
+		case 'UPDATE_EXPENSE':
+			ModalScreen = <UpdateExpense/>
 			break;
 		case 'EDIT_TITLE_AND_NOTE':
 			ModalScreen = <EditTitleAndNote/>
 			break;
-			
-			
 		case 'DEFAULT':
 			ModalScreen = <DefaultScreen/>
 			break;

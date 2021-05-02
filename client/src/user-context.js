@@ -63,6 +63,7 @@ export const GlobalProvider = ({children}) => {
         }
 
         function changeModalScreen(order){
+                console.log(order)
                 dispatch({type: 'CHANGE_MODAL_SCREEN', payload: order})
                 dispatch({type: 'TOGGLE_POPUP', payload: true})
         }

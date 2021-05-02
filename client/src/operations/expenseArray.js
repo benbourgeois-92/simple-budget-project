@@ -126,84 +126,84 @@ const expenseList = [
         }
     ]
 },
-{
-    id: '8',
-    title: 'Rent',
-    amount: 150,
-    amountSaved: 110.01,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'Paypal (Sending to Mom)',
-    note: '',
-    recentTransactions: []
-},
-{
-    id: '9',
-    title: 'Spotify',
-    amount: 10.69,
-    amountSaved: 0,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'Spotify',
-    note: '',
-    recentTransactions: []
-},
-{
-    id: '10',
-    title: 'Vacation',
-    amount: 85,
-    amountSaved: .74,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'No Automatic Spending',
-    note: '',
-    recentTransactions: []
-},
-{
-    id: '11',
-    title: 'Vehicle Insurance',
-    amount: 114,
-    amountSaved: 15.04,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'No Automatic Spending',
-    note: '',
-    recentTransactions: []
-},
-{
-    id: '12',
-    title: 'Vehicle Oil Change',
-    amount: 13,
-    amountSaved: .05,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'No Automatic Spending',
-    note: '',
-    recentTransactions: []
-},
-{
-    id: '13',
-    title: 'Vehicle Tax and Registration (192/12)',
-    amount: 16,
-    amountSaved: 0,
-    dueDate: new Date("2020/01/05"),
-    dueDateLabel: 'the 5th of every month',
-    moneyIn: 'On Payday',
-    contribution: 'Set Aside Target Amount',
-    moneyOut: 'No Automatic Spending',
-    note: '',
-    recentTransactions: []
-}
+// {
+//     id: '8',
+//     title: 'Rent',
+//     amount: 150,
+//     amountSaved: 110.01,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'Paypal (Sending to Mom)',
+//     note: '',
+//     recentTransactions: []
+// },
+// {
+//     id: '9',
+//     title: 'Spotify',
+//     amount: 10.69,
+//     amountSaved: 0,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'Spotify',
+//     note: '',
+//     recentTransactions: []
+// },
+// {
+//     id: '10',
+//     title: 'Vacation',
+//     amount: 85,
+//     amountSaved: .74,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'No Automatic Spending',
+//     note: '',
+//     recentTransactions: []
+// },
+// {
+//     id: '11',
+//     title: 'Vehicle Insurance',
+//     amount: 114,
+//     amountSaved: 15.04,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'No Automatic Spending',
+//     note: '',
+//     recentTransactions: []
+// },
+// {
+//     id: '12',
+//     title: 'Vehicle Oil Change',
+//     amount: 13,
+//     amountSaved: .05,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'No Automatic Spending',
+//     note: '',
+//     recentTransactions: []
+// },
+// {
+//     id: '13',
+//     title: 'Vehicle Tax and Registration (192/12)',
+//     amount: 16,
+//     amountSaved: 0,
+//     dueDate: new Date("2020/01/05"),
+//     dueDateLabel: 'the 5th of every month',
+//     moneyIn: 'On Payday',
+//     contribution: 'Set Aside Target Amount',
+//     moneyOut: 'No Automatic Spending',
+//     note: '',
+//     recentTransactions: []
+// }
 ]
 
 export default expenseList;

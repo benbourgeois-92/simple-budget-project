@@ -1,16 +1,23 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {
+    useContext, 
+    useState} from 'react';
 import GlobalContext from '../user-context';
-import {currencyFormat, addDateSuffix, getDisabledDays} from './conversions';
+import {
+    currencyFormat, 
+    addDateSuffix, 
+    getDisabledDays} from './conversions';
 import Flickity from 'react-flickity-component';
-import OptionButtonList from '../components/OptionButtonList';
-import ConfirmCancelButtons from '../components/ConfirmCancelButtons';
+import {
+    UpdateAmount, 
+    Calendar, 
+    ConfirmCancelButtons, 
+    OptionButtonList} from '../components/Widgets';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
 import '../css/form-slide.css';
 import '../css/incorrect-shake.css';
-import { useParams } from 'react-router';
-import { STATES } from 'mongoose';
+import { useParams} from 'react-router';
 
 export const DeleteExpenseScreen = (props) => {
     
@@ -433,7 +440,6 @@ export const EditExpenseScreen = (props) => {
     )
 
 }
-
 export const SelectSortScreen = (props) => {
 
     const {togglePopup, screen, operation, account} = useContext(GlobalContext);
@@ -468,11 +474,10 @@ export const SelectSortScreen = (props) => {
     )
 
 }
-
 export const EditTitleAndNote = (props) => {
 
     const {id} = useParams();
-    const [noteAndTitle, setNoteAndTitle] = useState({id: id, title: '', note: ''})
+    const [noteAndTitle, setNoteAndTitle] = useState({title: '', note: ''})
     let disabled = true;
 
     const onChange = (e) => {
@@ -488,7 +493,7 @@ export const EditTitleAndNote = (props) => {
 
 
 
-    const order = {type: 'UPDATE_EXPENSE', item: noteAndTitle};
+    const order = {type: 'UPDATE_EXPENSE', item: noteAndTitle, id: id};
 
     return (
             <div>
@@ -516,62 +521,109 @@ export const EditTitleAndNote = (props) => {
     )
 
 }
-
 export const UpdateExpense = (props) => {
 
     const {id} = useParams();
-    const [propertiesToUpdate, setPropertiesToUpdate] = useState({id: id, title: '', note: ''})
+    const {screen} = useContext(GlobalContext)
+    const [propertiesToUpdate, setPropertiesToUpdate] = useState(screen.item.properties)
     let disabled = true;
+    console.log(propertiesToUpdate)
 
-    const onChange = (e) => {
+    function onChange(e) {
         setPropertiesToUpdate({...propertiesToUpdate, [e.target.id]: e.target.value});
+        console.log(propertiesToUpdate)
+        disabled = false;
+    //    for (const property in propertiesToUpdate) {
+
+    //         console.log(`${property}: ${propertiesToUpdate[property]}`);
+
+    //         if(propertiesToUpdate[property] == null){
+    //             disabled = true;
+    //         }
+    //      if(propertiesToUpdate[property].length != 0) {
+
+    //         disabled = true;
+
+    //      }
+         
+
+    //         }
+    
     }
 
-    // for (const property in propertiesToUpdate) {
-
-    //     object[propertry] == null ? disabled=true : null;
-
-    //     console.log(`${property}: ${object[property]}`);
-        
-
-    //   }
-
-    if(noteAndTitle.title == '' && noteAndTitle.note == ''){
-        disabled = true;
-    }else{
+    function onSubmit(e){
+        e.preventDefault();
         disabled = false;
     }
+ 
+    // function validate(e) {
+    //          for (const property in propertiesToUpdate) {
 
-    const order = {type: 'UPDATE_EXPENSE', item: propertiesToUpdate};
+    //         console.log(`${property}: ${propertiesToUpdate[property]}`);
+
+
+    //         // if(propertiesToUpdate[property].length == 0){
+    //         //     console.log(`${property}: ${propertiesToUpdate[property]} is zero in length`);
+
+
+    //         // }
+
+    //             if(propertiesToUpdate[property] == null){
+    //                 disabled = true;
+    //                 return;
+    //             }
+
+    //         }
+
+
+    // }
+
+
+ 
+    
+    
+
+
+
+    let screenToDisplay;
+    switch(screen.item.function){
+        case "AMOUNT":
+            screenToDisplay = <UpdateAmount currentAmount={16} onChanges={onChange} title="How much do you want to put away each month?" />
+            break;
+        case "DATE":
+            screenToDisplay = <Calendar propertiesToUpdate={propertiesToUpdate} setPropertiesToUpdate={setPropertiesToUpdate} title="Select a new date." subtitle="Choose a new due date for this expense"/>
+            break;
+        case "MONEY_IN":
+            screenToDisplay = <UpdateAmount/>
+            break;
+        case "CONTRIBUTION":
+            screenToDisplay = <UpdateAmount/>
+            break;
+        case "MONEY_OUT":
+            screenToDisplay = <UpdateAmount/>
+            break;
+        default:
+            screenToDisplay = null;
+    }
+    
+
+    // if(noteAndTitle.title == '' && noteAndTitle.note == ''){
+    // }else{
+    //     disabled = false;
+    // }
+
+    const order = {type: 'UPDATE_EXPENSE', item: propertiesToUpdate, id: id};
 
     return (
             <div>
-                <div>                        
-                    <h2 className="centerText bold">Edit Expense Title</h2>
-                    <p className="centerText">Adding a note is optional.</p>
-                    
-                    <div >
-                        <br/>
-
-                        <label htmlFor="title">Title:</label>
-                        <input onChange={e => onChange(e)} name="title" type="text" id="title" placeholder="enter your title here"/>							
-                        
-                        <label htmlFor="note">Note:</label>
-                        <textarea onChange={e => onChange(e)} rows="2" name="title" type="text" id="note" placeholder="enter your note here"/>							
-                        <br/>
-                    </div>
-
-                   
-                </div>
-
-                <ConfirmCancelButtons order={order} disabled={disabled} text="" />
-
+                <form onSubmit={onSubmit}>
+                    {screenToDisplay}
+                    <ConfirmCancelButtons order={order} disabled={disabled} text="" />
+                </form>
             </div>
     )
 
 }
-
-
 
 export const DefaultScreen = (props) => {
 

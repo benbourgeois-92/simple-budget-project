@@ -2,12 +2,12 @@ import{React, useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
 import '../css/edit-expense.css';
-import '../css/detail-buttons.css';
 
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import FundingStatus from './FundingStatus';
 import GlobalContext from '../user-context';
 import {currencyFormat, addDateSuffix, month} from '../operations/conversions';
+import {DetailButton} from './Widgets';
 
 const EditExpense = (props) => {
 
@@ -24,7 +24,18 @@ const EditExpense = (props) => {
         return null;
     }
 
-    const {title, amount, amountSaved, dueDate, dueDateLabel, moneyOut, moneyIn, note, contribution, recentTransactions} = expense;
+    const {
+        title, 
+        amount, 
+        amountSaved, 
+        dueDate, 
+        dueDateLabel, 
+        moneyOut, 
+        moneyIn, 
+        note, 
+        contribution, 
+        recentTransactions
+    } = expense;
 
     const convertedAmount = currencyFormat(amount);
     const convertedAmountSaved = currencyFormat(amountSaved);
@@ -32,13 +43,14 @@ const EditExpense = (props) => {
 
 
     const orders = [
-        {screen: "UPDATE_EXPENSE_AMOUNT", item: null},
-        {screen: "UPDATE_EXPENSE_DUEDATE", item: null},
+        {screen: "UPDATE_EXPENSE", item: {properties: {amount: 0}, function: "AMOUNT"}},
+        {screen: "UPDATE_EXPENSE", item: {properties: {date: null, dateLabel: null}, function: "DATE"}},
         {screen: "UPDATE_EXPENSE_MONEYIN", item: null},
         {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
         {screen: "UPDATE_EXPENSE_MONEYOUT", item: null},        
         {screen: "DELETE_EXPENSE", item: expense},
-        {screen: "EDIT_TITLE_AND_NOTE", item: null}
+        {screen: "EDIT_TITLE_AND_NOTE", item: expense}      
+
     ]
 
     return (
@@ -54,6 +66,7 @@ const EditExpense = (props) => {
 
                 <div>
                     <div>
+
                         <ul>
 
                             <li><Link to="home/expenses" className="squareIcon return openPopupMenu">Back to Expenses</Link></li>
@@ -67,35 +80,14 @@ const EditExpense = (props) => {
                 </div>
             </div>
             <div className="editExpenseDetails">
-                <section>
-                    <button onClick={() => changeModalScreen(orders[0])} type="button" className="detailsStacked">
-                        <div className="icon bank">
+                <section> 
+                    <DetailButton title="Amount" subtitle={convertedAmount} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Due Date" subtitle={dueDateLabel} icon="icon calendar" order={orders[1]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Money In" subtitle={moneyIn} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Contribution Option" subtitle={contribution} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Money Out" subtitle={moneyOut} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
 
-                        </div>
-                        <div>
-                            <p>Amount</p> 
-                            <p>{convertedAmount}</p>
-                        </div>
-                    </button>
-                    <button  onClick={() => changeModalScreen(orders[1])} type="button" className="detailsStacked">
-                        <div className="icon calendar">
 
-                        </div>
-                        <div>
-                            <p>Due Date</p> 
-                            <p>{dueDateLabel}</p>
-                        </div>
-                    </button>
-
-                    {/* <button  disabled onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked disabled">
-                        <div className="icon arrowRight">
-
-                        </div>
-                        <div>
-                            <p>Money In</p> 
-                            <p>{moneyIn}</p>
-                        </div>
-                    </button> */}
                     <button  onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked">
                         <div className="icon arrowRight">
 

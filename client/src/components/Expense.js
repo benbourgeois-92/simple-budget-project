@@ -13,8 +13,7 @@ const Expense = ( props) => {
 
     const {changeModalScreen} = useContext(GlobalContext);
     const history = useHistory();
-    const match = useRouteMatch();
-
+ 
 
     const expense = props.info;
     const sorting = props.sorting;
@@ -40,7 +39,6 @@ const Expense = ( props) => {
 
       const orders = [
         {screen: "DELETE_EXPENSE", item: expense},
-        {screen: "UPDATE_EXPENSE", item: expense}
       ]
  
 
