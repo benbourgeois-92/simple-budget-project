@@ -4,14 +4,21 @@ button.detailsStacked {
     color:#313d46;
     width: 100%;
     padding: 15px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid #e0e0e0;
+
+
+    border: 1px solid #e0e0e0 !important;
+
     box-sizing: border-box;
     -webkit-appearance: none;
+    box-shadow: 0 2px 3px 0 #888888;
+    border-style: none;
     
 }
+
+
+
+
+
 
 button.detailsStacked div.icon {
     width: 50px;
@@ -78,5 +85,26 @@ button.detailsStacked div.icon.arrowRight {
 }
 button.detailsStacked div.icon.arrowLeft {
     background: url(../images/arrow-left-solid.svg); 
+
+}
+button.detailsStacked div.icon.profile {
+    background: url(../images/account-circle.svg); 
+
+}
+button.detailsStacked div.icon.email{
+    background: url(../images/email.svg); 
+
+}
+button.detailsStacked div.icon.membership{
+    background: url(../images/membership.svg); 
+
+}
+button.detailsStacked div.icon.delete{
+    background: url(../images/trashcan.svg); 
+
+}
+
+button.detailsStacked div.icon.bug{
+    background: url(../images/bug_report.svg); 
 
 }

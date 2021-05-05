@@ -87,31 +87,18 @@ const ActivityCopy = (props) => {
                 <p className="noTransactions" style={{display:'none'}}>No transactions at this time</p>
                 <ul>
                     {
-                        sortedTransactions.map((transaction, i, arr)=>{
+                        sortedTransactions.map((transaction) => {
 
-                            console.log(i)
 
-                            if(i > 1){
-                            const previousItem = arr[i - 1];
-
-                                if(transaction.date.getTime() !== previousItem.date.getTime()){
-                                    return <>
-                                        <div className="transactionDays">
-                                            <div className="dateSummary">
-                                                <h2>Monday, March 1</h2>
-                                            </div>	  
-                                        </div>
-                                        <Transaction item={transaction} />
-                                    </>
-                                } else {
-
-                                    <Transaction item={transaction} />
+                                     <li><Transaction item={transaction} /></li>   
+                          
 
                                 }
-                            }
+                                )
+                                }
+                        
     
-                        })
-                    }
+                    
                     
                     
     
@@ -120,7 +107,6 @@ const ActivityCopy = (props) => {
 
           
 
-                {/*  */}
 
             </div>
         </div>

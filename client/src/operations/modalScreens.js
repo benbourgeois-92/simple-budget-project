@@ -11,7 +11,8 @@ import {
     UpdateAmount, 
     Calendar, 
     ConfirmCancelButtons, 
-    OptionButtonList} from '../components/Widgets';
+    OptionButtonList,
+    SelectFunds} from '../components/Widgets';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
@@ -624,7 +625,50 @@ export const UpdateExpense = (props) => {
     )
 
 }
+export const TransferFunds = (props) => {
 
+    const {id} = useParams();
+    const {screen, account} = useContext(GlobalContext)
+    const [fundsToMove, setFundsToMove] = useState({moveFrom: id, moveTo: null, fundsToMove: 0})
+
+    let disabled = true;
+ 
+
+    function onChange(e) {
+        setFundsToMove({...fundsToMove, [e.target.id]: e.target.value});
+    
+    
+    }
+
+    function onSubmit(e){
+        e.preventDefault();
+        disabled = false;
+    }
+
+
+
+    const order = {type: 'UPDATE_EXPENSE', item: fundsToMove, id: id};
+
+    return (
+            <div>
+                <form onSubmit={onSubmit}>
+
+
+                    <SelectFunds name="Move Funds From: " list1={account.expenses} list2={account.goals}/>
+
+                    <label htmlFor="amount">How much do you want to move?</label>
+                    <input required min="0" pattern="^[1-9]+" type="number" id="amount" placeholder="0"/>							
+                    <SelectFunds name="Move Funds To: " list1={account.expenses} list2={account.goals}/>
+
+
+
+
+                    <ConfirmCancelButtons order={order} disabled={disabled} text="" />
+                </form>
+            </div>
+    )
+
+}
 export const DefaultScreen = (props) => {
 
     const {togglePopup, screen} = useContext(GlobalContext);

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import '../css/register.css';
 
 
 const Register = () => {
-
+    const history = useHistory();
     const [formData, setFormData] = useState({
         fname: '',
         lname: '',
@@ -25,7 +25,7 @@ const Register = () => {
         //prevent default html form behavior
         e.preventDefault();
         if(password !== password2) {
-            console.log('Passwords do not match');
+            alert('Passwords do not match');
         } else {
             const name = fname + ' ' + lname;
 
@@ -45,9 +45,10 @@ const Register = () => {
                 const body = JSON.stringify(newUser);
 
                 const res = await axios.post('/api/users', body, config)
-
-                if(res){
-                    <Redirect to="/dashboard"/>
+                if(res.data.token){
+                    history.push(`/home/dashboard`);
+                }else{
+                    alert("no token")
                 }
                 console.log(res.data);
 

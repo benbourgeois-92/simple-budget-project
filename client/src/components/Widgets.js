@@ -130,6 +130,52 @@ export const DetailButton = ({title, subtitle, icon, disabled, order, changeModa
             </button> 
     )
 }
+export const ProfileHeader = ({name, email, subscription, photo, date}) => {
+
+ 
+
+
+    return (
+        <div className="summary">
+                            
+            <div className="photoPlaceholder">
+                <p>{name.charAt(0).toUpperCase()}</p>
+            </div>
+
+            <div>
+                <h2>{name}</h2>
+                <p>{subscription}</p>
+                <p>Member Since: {date.getFullYear()}</p>                
+            </div>
+
+        
+        
+        </div>
+    )
+
+        
+}
+export const SelectFunds = ({name, list1, list2}) => {
+    const style={backgroundColor: "#fafafa", color: "#313d46"}
+    return (
+        <label>{name}
+            <select style={style}>
+
+            {list1.map((expense, i) => 
+                
+
+                <option key={i} value={expense.title}>{expense.title}</option>
+
+            )}
+            {list2.map((goal, i) => 
+
+                <option key={i} value={goal.title}>{goal.title}</option>
+
+            )}
+            </select>
+    </label>
+    )
+}
 
 
 export default UpdateAmount;

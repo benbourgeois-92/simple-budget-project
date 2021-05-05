@@ -1,0 +1,49 @@
+.profileInformationComponent {
+
+    /*TEMPORARY*/
+    margin-right: auto;
+    margin-left: auto;
+
+
+    width: 100%;
+    max-width: 730px;
+    min-height: 50px;
+    color: #313d46;
+    font-family: 'Sen', sans-serif !important;
+    
+}
+
+.profileInformationComponent .summary {
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+}
+
+.profileInformationComponent .summary h2, .profileInformationComponent .summary p {
+    text-align: center;
+}
+
+
+
+.profileInformationComponent section + section {
+  margin-top: 83px;
+
+}
+
+.profileInformationComponent .summary .photoPlaceholder {
+
+    width: 100px;
+    height: 100px;
+    background-color: #5FFFD3;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 32px;
+    border-radius: 100px;
+    border: 15px solid #fff;
+    box-shadow: 0 4px 4px #888888;
+    margin-right: auto;
+    margin-left: auto;
+
+}

@@ -6,9 +6,12 @@ import BankSettings from './BankSettings';
 import Expenses from './Expenses';
 import EditExpense from '../components/EditExpense';
 import Popup from '../components/Popup'
+import ProfileInformation from '../components/ProfileInformation'
 
 const Pages = () => {
+
     const match = useRouteMatch();
+
     return (
 
         <Switch>
@@ -29,6 +32,11 @@ const Pages = () => {
             </Route>
             <Route path={`${match.url}/expenses/edit_expense/:id`}>
                 <EditExpense/>
+                <Popup />                    
+
+            </Route>
+            <Route path={`${match.url}/profile`}>
+                <ProfileInformation/>
                 <Popup />                    
 
             </Route>

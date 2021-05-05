@@ -30,7 +30,7 @@ const Navbar = () => {
                     </div>	
 
                     <nav id="mySidenav" className={ menuOpen ? 'sidenav open':'sidenav'} >
-                            <Link className="userProfile" to="/userprofile">
+                            <Link onClick={menuToggle} className="userProfile" to="/home/profile">
                             {/*<img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="profile photo"> */}
                             
                             <div className="photoPlaceholder">

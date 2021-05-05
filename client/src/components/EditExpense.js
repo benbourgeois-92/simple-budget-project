@@ -49,7 +49,9 @@ const EditExpense = (props) => {
         {screen: "UPDATE_EXPENSE_CONTRIBUTION", item: null},
         {screen: "UPDATE_EXPENSE_MONEYOUT", item: null},        
         {screen: "DELETE_EXPENSE", item: expense},
-        {screen: "EDIT_TITLE_AND_NOTE", item: expense}      
+        {screen: "EDIT_TITLE_AND_NOTE", item: expense},
+        {screen: "TRANSFER_FUNDS", item: expense}      
+      
 
     ]
 
@@ -72,7 +74,7 @@ const EditExpense = (props) => {
                             <li><Link to="home/expenses" className="squareIcon return openPopupMenu">Back to Expenses</Link></li>
                             <li><button onClick={() => changeModalScreen(orders[6])}  className="squareIcon edit openPopupMenu">Edit Expense Name</button></li>
                             <li><button onClick={() => changeModalScreen(orders[5])} className="squareIcon delete">Delete Expense</button></li>
-                            <li><button className="squareIcon transfer">Transfer Funds to Another Expense</button></li>
+                            <li><button onClick={() => changeModalScreen(orders[7])} className="squareIcon transfer">Transfer Funds to Another Expense</button></li>
 
                         </ul>
                         
@@ -83,40 +85,10 @@ const EditExpense = (props) => {
                 <section> 
                     <DetailButton title="Amount" subtitle={convertedAmount} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
                     <DetailButton title="Due Date" subtitle={dueDateLabel} icon="icon calendar" order={orders[1]} changeModalScreen={changeModalScreen} />
-                    <DetailButton title="Money In" subtitle={moneyIn} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
-                    <DetailButton title="Contribution Option" subtitle={contribution} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
-                    <DetailButton title="Money Out" subtitle={moneyOut} icon="icon bank" order={orders[0]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Money In" subtitle={moneyIn} icon="icon arrowRight" order={orders[2]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Contribution Option" subtitle={contribution} icon="icon target" order={orders[3]} changeModalScreen={changeModalScreen} />
+                    <DetailButton title="Money Out" subtitle={moneyOut} icon="icon arrowLeft" order={orders[0]} changeModalScreen={changeModalScreen} />
 
-
-                    <button  onClick={(e) => e.target.disabled ? null : changeModalScreen(orders[2])} type="button" className="detailsStacked">
-                        <div className="icon arrowRight">
-
-                        </div>
-                        <div>
-                            <p>Money In</p> 
-                            <p>{moneyIn}</p>
-                        </div>
-                    </button>
-                    
-                    <button  onClick={() => changeModalScreen(orders[3])} type="button" className="detailsStacked">
-                        <div className="icon target">
-
-                        </div>
-                        <div>
-                            <p>Contribution Option</p> 
-                            <p>{contribution}</p>
-                        </div>
-                    </button>
-
-                    <button  onClick={() => changeModalScreen(orders[4])} type="button" className="detailsStacked">
-                        <div className="icon arrowLeft">
-
-                        </div>
-                        <div>
-                            <p>Money Out</p> 
-                            <p>{moneyOut}</p>
-                        </div>
-                    </button>							
                 </section>
 
             </div>
