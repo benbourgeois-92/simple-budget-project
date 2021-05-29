@@ -89,7 +89,7 @@ export const OptionButtonList = ({options, primaryOption, range}) => {
     )
 }
 export const ConfirmCancelButtons = ({order, disabled, text}) => {
-
+    console.log(disabled)
     const {togglePopup, screen, operation} = useContext(GlobalContext);
 
     if(!text){
@@ -155,27 +155,40 @@ export const ProfileHeader = ({name, email, subscription, photo, date}) => {
 
         
 }
-export const SelectFunds = ({name, list1, list2}) => {
+export const SelectFunds = ({name, list1, list2, current, BTB, onChange}) => {
     const style={backgroundColor: "#fafafa", color: "#313d46"}
     return (
-        <label>{name}
-            <select style={style}>
+        <div className="moveFundsSelector">
+            <label className="textLeft">{name}</label>
+            <select onChange={e => onChange(e)} defaultValue={current} style={style} >
 
-            {list1.map((expense, i) => 
+                <option key="BTB" value="BTB">{"Balance-To-Budget" + " (" + currencyFormat(BTB) + ")"}</option>
+
+                {list1.map((expense, i) => 
+                    
+                    <option key={i} value={expense.id}>{expense.title + '   (' + currencyFormat(expense.amountSaved) + ')'}</option>
                 
+                )}
 
-                <option key={i} value={expense.title}>{expense.title}</option>
+                {list2.map((goal, i) => 
 
-            )}
-            {list2.map((goal, i) => 
+                    <option key={i} value={goal.id}>{goal.title + '   (' + currencyFormat(goal.amountSaved) + ')'}</option>
 
-                <option key={i} value={goal.title}>{goal.title}</option>
-
-            )}
+                )}
             </select>
-    </label>
+        </div>
     )
 }
+export const TitleAndSubtitle = ({title, subtitle, textLeft }) => {
+
+    return (
+        <div>
+            <h2 className={textLeft ? "textLeft" : "centerText"}>{title}</h2>
+            <p className={textLeft ? "textLeft" : "centerText"}>{subtitle}</p>
+        </div>
+    )
+}
+
 
 
 export default UpdateAmount;

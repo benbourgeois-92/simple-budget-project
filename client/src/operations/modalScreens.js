@@ -12,7 +12,8 @@ import {
     Calendar, 
     ConfirmCancelButtons, 
     OptionButtonList,
-    SelectFunds} from '../components/Widgets';
+    SelectFunds,
+    TitleAndSubtitle} from '../components/Widgets';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import '../css/modal_screens.css';
@@ -630,14 +631,13 @@ export const TransferFunds = (props) => {
     const {id} = useParams();
     const {screen, account} = useContext(GlobalContext)
     const [fundsToMove, setFundsToMove] = useState({moveFrom: id, moveTo: null, fundsToMove: 0})
-
     let disabled = true;
  
 
     function onChange(e) {
+
         setFundsToMove({...fundsToMove, [e.target.id]: e.target.value});
-    
-    
+        console.log(e.target.id)
     }
 
     function onSubmit(e){
@@ -652,22 +652,68 @@ export const TransferFunds = (props) => {
     return (
             <div>
                 <form onSubmit={onSubmit}>
-
-
-                    <SelectFunds name="Move Funds From: " list1={account.expenses} list2={account.goals}/>
-
-                    <label htmlFor="amount">How much do you want to move?</label>
-                    <input required min="0" pattern="^[1-9]+" type="number" id="amount" placeholder="0"/>							
-                    <SelectFunds name="Move Funds To: " list1={account.expenses} list2={account.goals}/>
-
-
-
+                    <TitleAndSubtitle title="Transfer Funds" subtitle="Move funds from an expense or goal to a another one." textLeft/>
+                    <label className="textLeft" htmlFor="amount">How much do you want to move?</label>
+                    <input required min="0" max="500"  pattern="^[1-9]+" type="number" id="amount" placeholder="0"/>							
+                    <br/>
+                    <SelectFunds name="Move Funds From: " onChange={onChange} list1={account.expenses} list2={account.goals} current={fundsToMove.moveFrom} BTB={account.balance_to_budget}/>
+                    <br/>
+                    <SelectFunds name="Move Funds To: " onChange={onChange} list1={account.expenses} list2={account.goals} current="BTB" BTB={account.balance_to_budget}/>
 
                     <ConfirmCancelButtons order={order} disabled={disabled} text="" />
                 </form>
             </div>
     )
 
+}
+export const UpdateName = (props) => {
+
+    const {user} = useContext(GlobalContext)
+    const [name, setName] = useState({first_name: null, last_name: null, placeholder: ""});
+    const [disabled, setDisabled] = useState(true);
+
+    console.log('running again')
+
+
+
+    const onChange = (e) => {
+        setName({...name, [e.target.id]: e.target.value});
+
+        console.log(e.target.value)
+        
+        if(e.target.value == null){
+            setDisabled(true);  
+
+        } else {            
+            setDisabled(false);       
+
+        }        
+
+
+    }
+
+    function onSubmit(e){
+        e.preventDefault();
+
+    }
+
+    const order = {type: 'UPDATE_NAME', item: null};
+
+    return (
+        <div>
+            <TitleAndSubtitle title="Update Your Name"/>
+            <form onSubmit={onSubmit}>
+
+                <label htmlFor="first_name">First Name: {disabled ? "disabled":"not disabled"}</label>
+                <input required onChange={e => onChange(e)} id="first_name" type="text"  placeholder={user.first_name}/>
+
+                <label htmlFor="last_name">Last Name:</label>
+                <input required onChange={e => onChange(e)} id="last_name" type="text"  placeholder={user.last_name}/>
+
+                <ConfirmCancelButtons order={order} disabled={disabled}/>
+            </form>
+        </div>
+    )
 }
 export const DefaultScreen = (props) => {
 

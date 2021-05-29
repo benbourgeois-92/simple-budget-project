@@ -66,6 +66,10 @@ div.content.greyBackground {
 .centerText {
 	text-align: center;
 }
+.textLeft {
+	text-align: left !important;
+	padding-left: 0 !important;
+}
 
 .bold {
 	font-weight: bold;
@@ -110,4 +114,17 @@ div.content.greyBackground {
 		margin-right: auto;
 	}
 
+.moveFundsSelector select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    appearance: none;
+	width: 100%;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.moveFundsSelector {
+	display: flex;
+	flex-direction:column;
 
+}

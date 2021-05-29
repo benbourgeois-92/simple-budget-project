@@ -9,7 +9,9 @@ export const app = {
         user: {
                 id: 'id',
                 user_email: 'placeholder_email@gmail.com',
-                username: 'Username Placeholder',
+                first_name: 'Firstname',
+                last_name: 'Lastname',
+                username: 'Firstname Lastname',
                 user_image: 'None',
                 subscription: 'Free Trial',
                 isAuthenticated: false,                
@@ -22,6 +24,7 @@ export const app = {
         account: {
 
                 balance: 2033.33,
+                balance_to_budget: 0.0,
                 payday: new Date(),
                 expenses: expenseList,
                 expenseOrder: 'Alphabetically',

@@ -9,7 +9,8 @@ import {UpdatePaydayScreen,
 		SelectSortScreen, 
 		EditTitleAndNote, 
 		UpdateExpense,
-		TransferFunds} from '../operations/modalScreens';
+		TransferFunds,
+		UpdateName} from '../operations/modalScreens';
 
 const Popup = () => {
 
@@ -45,6 +46,9 @@ const Popup = () => {
 			break;
 		case 'TRANSFER_FUNDS':
 			ModalScreen = <TransferFunds/>
+			break;
+		case 'UPDATE_NAME':
+			ModalScreen = <UpdateName/>
 			break;
 		case 'DEFAULT':
 			ModalScreen = <DefaultScreen/>
