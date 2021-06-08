@@ -20,6 +20,7 @@ import '../css/modal_screens.css';
 import '../css/form-slide.css';
 import '../css/incorrect-shake.css';
 import { useParams} from 'react-router';
+import {useForm} from 'react-hook-form';
 
 export const DeleteExpenseScreen = (props) => {
     
@@ -669,6 +670,7 @@ export const TransferFunds = (props) => {
 export const UpdateName = (props) => {
 
     const {user} = useContext(GlobalContext)
+    const { register, handleSubmit } = useForm();
     const [name, setName] = useState({first_name: null, last_name: null, placeholder: ""});
     const [disabled, setDisabled] = useState(true);
 
@@ -689,7 +691,6 @@ export const UpdateName = (props) => {
 
         }        
 
-
     }
 
     function onSubmit(e){
@@ -699,16 +700,16 @@ export const UpdateName = (props) => {
 
     const order = {type: 'UPDATE_NAME', item: null};
 
-    return (
+    return ( 
         <div>
             <TitleAndSubtitle title="Update Your Name"/>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)} >
 
                 <label htmlFor="first_name">First Name: {disabled ? "disabled":"not disabled"}</label>
-                <input required onChange={e => onChange(e)} id="first_name" type="text"  placeholder={user.first_name}/>
+                <input  {...register("first_name")} required onChange={e => onChange(e)} id="first_name" type="text"  placeholder={user.first_name}/>
 
                 <label htmlFor="last_name">Last Name:</label>
-                <input required onChange={e => onChange(e)} id="last_name" type="text"  placeholder={user.last_name}/>
+                <input {...register("last_name")} required onChange={e => onChange(e)} id="last_name" type="text"  placeholder={user.last_name}/>
 
                 <ConfirmCancelButtons order={order} disabled={disabled}/>
             </form>

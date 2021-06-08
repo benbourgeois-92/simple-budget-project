@@ -1,10 +1,13 @@
 import '../css/sign-in.css';
 import React from 'react';
-import {Link} from 'react-router-dom';
+
+import {Link, useHistory} from 'react-router-dom';
 import {useFormik} from "formik";
+import login from '../operations/userOperations'
 
 const Signin = (props) => {
 
+    const history = useHistory();
     const validate = values => {
         const errors = {}
     
@@ -15,12 +18,10 @@ const Signin = (props) => {
         }
     
         if (!values.password) {
-          errors.password = 'Required'
-        } else if (values.password.length < 8) {
-          errors.password = 'Must be 8 characters or more'
-        } else if (values.password === '12345678') {
-          errors.password = 'Must not be 12345678 !!!'
-        }
+          errors.password = 'Required'}
+        // } else if (values.password === '12345678') {
+        //   errors.password = 'Must not be 12345678 !!!'
+        // }
     
         return errors
       }
@@ -32,7 +33,15 @@ const Signin = (props) => {
         },
         validate,
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          // alert(JSON.stringify(values, null, 2));
+          console.log(login(values.email, values.password));
+
+          // const redirect = login(values.email, values.password);
+          // console.log(redirect)
+
+          // if(){
+          //   history.push('/home/dashboard');
+          // };
         },
       });
 
@@ -48,10 +57,10 @@ const Signin = (props) => {
             <div>
                 <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <input type="email" id="email" name="email" placeholder="Email" onChange={formik.handleChange} value={formik.values.email} />
+                        <input type="email" id="email" name="email" minLength="2" placeholder="Email" onChange={formik.handleChange} value={formik.values.email} />
                     </div>
                     <div>
-                        <input type="password" id="password" name="password" placeholder="Password" onChange={formik.handleChange} value={formik.values.password} />
+                        <input type="password" id="password" name="password" minLength="8" placeholder="Password" onChange={formik.handleChange} value={formik.values.password} />
                         <input type="submit" placeholder="Sign In"/>						
                     </div>
                 </form>

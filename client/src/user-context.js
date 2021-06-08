@@ -1,9 +1,8 @@
 import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
-import transactions from './operations/transactionsArray'
+import transactions from './operations/transactionsArray';
 import expenseList from './operations/expenseArray';
-
-
+import axios from 'axios';
 
 export const app = {
         user: {
@@ -103,11 +102,20 @@ export const GlobalProvider = ({children}) => {
                                 dispatch({type: 'UPDATE_EXPENSE_NOTE', payload: order})
                                 dispatch({type: 'TOGGLE_POPUP', payload: false})
                                 break;
+                        case 'USER_LOADED':
+                                dispatch({type: 'USER_LOADED', payload: order})
+                                break;
+                        case 'AUTH_ERROR':
+                                dispatch({type: 'UPDATE_EXPENSE_TITLE', payload: order})
+                                break;
+
                         default:
                                 return;
                 }
 
         }
+ 
+        
 
 
 
@@ -119,7 +127,7 @@ export const GlobalProvider = ({children}) => {
                         togglePopup,
                         triggerNotification,
                         changeModalScreen,
-                        operation
+                        operation,
                 }}>
                         {children}
                 </GlobalContext.Provider>

@@ -12,8 +12,14 @@ import Register from './components/Register';
 import Pages from './pages/Pages';
 
 import GlobalContext from './user-context';
+import  {loadUser} from './operations/userOperations';
+import  {setAuthToken} from './operations/setAuthToken';
 
 import React, {useContext, useEffect} from 'react';
+
+if(localStorage.token) {
+    setAuthToken(localStorage.token);
+}
 
 const App = () => {
 
@@ -26,11 +32,13 @@ const App = () => {
 //   //   console.log(res.data);
  
 //   }
-    const user = useContext(GlobalContext)
+    const {user, operation} = useContext(GlobalContext)
 
     useEffect(() => {
         //this will only run once because of []
         console.log(user)
+        
+        operation();
     }, []);
 
 

@@ -4,6 +4,37 @@ export const AppReducer = (state, action) => {
 
 
     switch(action.type) {
+        case 'USER_LOADED':
+            return {
+                user: {
+                    id: action.payload.id,
+                    user_email: action.payload.user_email,
+                    first_name: action.payload.first_name,
+                    last_name: action.payload.last_name,
+                    username: action.payload.username,
+                    user_image: 'None',
+                    subscription: action.payload.subscription,
+                    isAuthenticated: true,                
+                },
+                ...state
+
+            }
+        case 'AUTH_ERROR':
+            localStorage.removeItem('token');
+            return {
+                user: {
+                    id: state.user.id,
+                    user_email: state.user.user_email,
+                    first_name: state.user.first_name,
+                    last_name: state.user.last_name,
+                    username: state.user.username,
+                    user_image: 'None',
+                    subscription: state.user.subscription,
+                    isAuthenticated: false,                
+                    },
+                ...state
+    
+                }
         case 'TOGGLE_POPUP':
 
             return {
